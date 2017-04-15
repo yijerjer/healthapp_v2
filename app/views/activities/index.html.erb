@@ -1,0 +1,11 @@
+<h3>All Sports - activity#index page</h3>
+
+<% @activities.each do |activity| %>
+  <%= form_for :user_activity, url: add_to_interests_activity_path(activity) do |f| %>
+    <%= f.hidden_field :activity_id, value: activity.id %>
+    <%= f.label activity.name %>
+    <%= f.select :ability, UserActivity.abilities.map { |ability, value| [ability.capitalize.gsub("_", " "), value] } %>
+    <%= f.submit "Add to favourites" %>
+  <% end %>
+  <br>
+<% end %>
