@@ -26,14 +26,13 @@ function setOptions(options, elem) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  var countrySelect = document.getElementById('user_country');
-  var stateSelect = document.getElementById('user_state');
-  var citySelect = document.getElementById('user_city');
+  var countrySelect = document.getElementsByClassName('country-select')[0];
+  var stateSelect = document.getElementsByClassName('state-select')[0];
+  var citySelect = document.getElementsByClassName('city-select')[0];
 
   // add options to state select input
   countrySelect.addEventListener('change', function() {
     postAjax('/city_state/state', {country: countrySelect.value}, function(options) {
-      var stateSelect = document.getElementById('user_state');
       if (Object.keys(options).length > 0) {
         setOptions(options, stateSelect);
       } else {
