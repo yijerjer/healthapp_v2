@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authourise_user
+  before_action :authenticate_user!, :authourise_user
+  before_action :check_user_attributes_exist, only: [:index, :show]
   before_action :get_user
-  skip_before_action :authenticate_user!, only: [:Iadd_password, :create_password]
   skip_before_action :authourise_user, only: [:index, :show]
   skip_before_action :get_user, only: [:index]
 
@@ -54,13 +53,9 @@ class UsersController < ApplicationController
   private
 
   def authourise_user
-    if params[:id] != current_user.id
-      return redirect_to root_path, danger: "Unauthourised action."
+    if params[:id].to_i != current_user.id
+      return redirect_to :back, danger: "Unauthourised action."
     end
-  end
-
-  def check_password_exists
-    if current_user
   end
 
   def get_user

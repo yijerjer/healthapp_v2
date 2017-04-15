@@ -1,4 +1,8 @@
 class SchedulesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authourise_user, only: [:show, :destroy]
+  before_action :check_user_attributes_exist
+
   def index
     @schedules = Schedule.where(user_id: current_user.id)
   end
@@ -24,11 +28,16 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    @schedule = Schedul.find_by_id(params[:id])
+    @schedule = Schedule.find_by_id(params[:id])
     @schedule.destroy
   end
 
   private
+
+  def authourise_user
+    if Schedule.find_by_id(params[:id]).user_id != current_user.id
+      return redirect_to :back, danger: "Unauthourised action."
+  end
 
   def schedule_params
     params.require(:schedule).permit(:city, :state, :country, :use_user_location, :activity_id, :time)

@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_user_attributes_exist
   before_action :sanitise_params, only: [:add_to_interests]
 
   def index

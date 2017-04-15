@@ -31,10 +31,15 @@ class User < ApplicationRecord
       email: auth_hash.info.email, name: auth_hash.info.name, remote_avatar_url: avatar_url,
       skip_password_validation: true, signup_option: "omniauth"
     )
+    
     user.save
     user.authentications << authentication
 
     return user
+  end
+
+  def attributes_exists?
+    return self.city.present? && self.state.present? && self.country.present? && self.name.present? && self.age.present?
   end
 
   private

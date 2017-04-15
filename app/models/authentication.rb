@@ -1,5 +1,5 @@
 class Authentication < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
 
   def self.create_from_omniauth(auth_hash)
     Authentication.create(provider: auth_hash.provider, uid: auth_hash.uid, token: auth_hash.credentials.token)
