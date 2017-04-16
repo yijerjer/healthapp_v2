@@ -33,17 +33,17 @@
 
   <div class="field">
     <%= f.label :country %><br />
-    <%= f.select :country, get_countries.map { |key, value| [value, key] } %>
+    <%= f.select :country, get_countries.map { |key, value| [value, key] }, {}, { class: "country-select" } %>
   </div>
 
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.select :state, {}, {}, { disabled: true } %>    
+    <%= f.select :state, {}, {}, { disabled: true, class: "state-select" } %>
   </div>
 
   <div class="field">
     <%= f.label :city %><br />
-    <%= f.text_field :city, { disabled: true } %>   
+    <%= f.text_field :city, { disabled: true, class: "city-select" } %>
   </div>  
 
   <div class="actions">

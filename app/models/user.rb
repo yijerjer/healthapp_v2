@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validate :correct_passwords_on_update, on: :update
 
   # callbacks
-  before_update :convert_country_state_code_to_names, :capitalize_city, if: :has_city_state_country?
+  before_update :convert_country_state_code_to_names, :capitalize_city, if: :valid_city_state_country?
 
 
   def self.create_from_omniauth(authentication, auth_hash)
@@ -62,8 +62,8 @@ class User < ApplicationRecord
     self.city = city.split(" ").map(&:capitalize).join(" ")
   end
 
-  def has_city_state_country?
-    return city.present? && state.present? && country.present?
+  def valid_city_state_country?
+    return city.present? && state.present? && country.present? && CS.get[country.to_sym].present?
   end
 
   def password_required?

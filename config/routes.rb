@@ -33,13 +33,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :schedules, except: [:edit, :update]
-
-  resources :schedule_responses, only: [] do
-    member do
-      post 'accept'
-      post 'decline'
+  resources :schedules, except: [:edit, :update] do
+    resources :schedule_responses, only: [] do
+      collection do
+        post 'accept'
+        post 'decline'
+      end
     end
   end
+
+  resources :matches, only: [:index, :show]
 
 end

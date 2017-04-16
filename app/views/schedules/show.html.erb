@@ -1,2 +1,7 @@
 <h3>schedule#show page</h3>
 
+<% @schedule.available_matches.each do |schedule| %>
+  <p><%= schedule.id %></p>
+  <h3><%= schedule.user.name %></h3>
+<% end %>
+
