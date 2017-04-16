@@ -21,7 +21,7 @@ class Schedule < ApplicationRecord
 
 
   def matches
-    Match.where(schedule1_id: self.id, schedule2_id: self.id)
+    Match.where("schedule1_id = :id OR schedule2_id = :id", id: self.id)
   end
 
   def available_matches

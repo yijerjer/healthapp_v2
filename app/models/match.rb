@@ -12,6 +12,14 @@ class Match < ApplicationRecord
     joins(:schedule1, :schedule2).where("schedules.user_id = :id OR schedule2s_matches.user_id = :id", id: user.id)
   }
 
+  def schedules
+    Schedule.where(id: [self.schedule1_id, self.schedule2_id])
+  end
+
+  def users
+    User.where(id: self.schedules.pluck(:user_id))
+  end
+
   private
 
   def unique_schedule_ids
