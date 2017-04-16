@@ -35,4 +35,11 @@ Rails.application.routes.draw do
 
   resources :schedules, except: [:edit, :update]
 
+  resources :schedule_responses, only: [] do
+    member do
+      post 'accept'
+      post 'decline'
+    end
+  end
+
 end

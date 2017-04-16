@@ -4,6 +4,8 @@ class Schedule < ApplicationRecord
   # associations
   belongs_to :user
   belongs_to :activity
+  has_many :responses, class_name: "ScheduleResponse", foreign_key: "responder_id"
+  has_many :receives, class_name: "ScheduleResponse", foreign_key: "receiver_id"
 
   #validations
   validates :city, :state, :country, :time, :activity_id, :user_id, :status, presence: true

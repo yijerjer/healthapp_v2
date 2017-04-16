@@ -1,0 +1,2 @@
+module ScheduleResponsesHelper
+end
