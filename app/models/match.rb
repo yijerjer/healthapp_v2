@@ -7,10 +7,15 @@ class Match < ApplicationRecord
   validates :schedule1_id, :schedule2_id, presence: true
   validate :unique_schedule_ids
 
+  # scope
+  scope :user_matches, -> (user) {
+    joins(:schedule1, :schedule2).where("schedules.user_id = :id OR schedule2s_matches.user_id = :id", id: user.id)
+  }
+
   private
 
   def unique_schedule_ids
-    same_match_present = Match.find_by_schedule1_id_and_schedule2_id(self.schedule1_id && self.schedule2_id) || Match.find_by_schedule1_id_and_schedule2_id(self.schedule2_id && self.schedule1_id)
+    same_match_present = Match.find_by_schedule1_id_and_schedule2_id(self.schedule1_id, self.schedule2_id) || Match.find_by_schedule1_id_and_schedule2_id(self.schedule2_id,  self.schedule1_id)
 
     if same_match_present
       errors.add(schedule1_id: "Match already created.")
