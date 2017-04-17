@@ -2,6 +2,7 @@ class Match < ApplicationRecord
   # associations
   belongs_to :schedule1, class_name: "Schedule", foreign_key: :schedule1_id
   belongs_to :schedule2, class_name: "Schedule", foreign_key: :schedule2_id
+  has_one :confirm
 
   # validations
   validates :schedule1_id, :schedule2_id, presence: true

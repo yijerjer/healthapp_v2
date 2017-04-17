@@ -9,6 +9,7 @@ class ScheduleResponsesController < ApplicationController
 
       if new_match
       redirect_to match_path(new_match), success: "Match found."
+      @schedule_response.change_to_has_matches_status
       else
         redirect_to schedule_path(@schedule_response.responder), success: "Responded to #{@schedule_response.receiver.user.name}'s schedule"
       end

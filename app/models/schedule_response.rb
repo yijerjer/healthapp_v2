@@ -24,4 +24,11 @@ class ScheduleResponse < ApplicationRecord
       return false
     end
   end
+
+  def change_to_has_matches_status
+    if self.responder.waiting_for_matches? && self.receiver.waiting_for_matches?
+      self.responder.has_matches!
+      self.receiver.has_matches!
+    end
+  end
 end

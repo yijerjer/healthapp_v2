@@ -42,6 +42,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :matches, only: [:index, :show]
+  resources :matches, only: [:index, :show] do
+    resources :confirms, only: [:create] do
+      member do
+        post 'accept'
+        post 'decline'
+      end
+    end
+  end
 
 end

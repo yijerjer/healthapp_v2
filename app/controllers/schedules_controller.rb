@@ -38,7 +38,7 @@ class SchedulesController < ApplicationController
 
   def authourise_user
     if Schedule.find_by_id(params[:id]).user_id != current_user.id
-      return redirect_to :back, danger: "Unauthourised action."
+      return redirect_to schedules_path, danger: "Unauthourised action."
     end
   end
 

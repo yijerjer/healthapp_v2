@@ -6,8 +6,9 @@ class Schedule < ApplicationRecord
   belongs_to :activity
   has_many :responses, class_name: "ScheduleResponse", foreign_key: :responder_id
   has_many :receives, class_name: "ScheduleResponse", foreign_key: :receiver_id
-  has_many :matches1, class_name: "Match", foreign_key: :schedule2_id
-  has_many :matches2, class_name: "Match", foreign_key: :schedule1_id
+  has_many :matches1, class_name: "Match", foreign_key: :schedule1_id
+  has_many :matches2, class_name: "Match", foreign_key: :schedule2_id
+
 
   #validations
   validates :city, :state, :country, :time, :activity_id, :user_id, :status, presence: true
@@ -23,7 +24,7 @@ class Schedule < ApplicationRecord
   def matches
     Match.where("schedule1_id = :id OR schedule2_id = :id", id: self.id)
   end
-
+  
   def available_matches
     age_range = ((self.user.age - 5)..(self.user.age + 5)).to_a
 
@@ -51,15 +52,6 @@ class Schedule < ApplicationRecord
   end
 
   private
-
-  def merge_date_time
-    if self.date && self.time
-      d = self.date.to_date
-      t = self.time.to_time
-
-      self.time = Time.new(d.year, d.month, d.day, t.hour, t.min, t.sec)
-    end
-  end
 
   def convert_country_state_code_to_names
     country_code = country
