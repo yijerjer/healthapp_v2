@@ -5,19 +5,14 @@
   flex-direction: column;
   justify-content: center;
   form {
+    margin-bottom: 30px;
     .same-line-fields {
-      margin: -30px 0;
+      margin-top: -15px;
       display: flex;
       justify-content: space-between;
       input[type=password] {
         width: 48%;
       }
-      // input[type=text] {
-      //   width: 65%
-      // }
-      // input[type=number] {
-      //   width: 31%;
-      // }
     } 
   }
 }
