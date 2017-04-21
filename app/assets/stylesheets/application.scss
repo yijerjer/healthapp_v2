@@ -2,7 +2,9 @@
 @import "bootstrap";
 @import "navbar";
 @import "home";
+@import "users/shared";
 @import "users/sessions";
+@import "users/registrations";
 
 html, body {
   height: 100%;
