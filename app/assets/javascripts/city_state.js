@@ -1,3 +1,4 @@
+// ajax call to city_state#country
 function postAjax(url, countryStateObject, callbackFunction) {
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", url, true);
@@ -14,6 +15,7 @@ function postAjax(url, countryStateObject, callbackFunction) {
   xhttp.send(JSON.stringify(countryStateObject));
 }
 
+// append options to select html input
 function setOptions(options, elem) {
   console.log(options);
   elem.setAttribute('disabled', 'true');
@@ -30,23 +32,26 @@ document.addEventListener('DOMContentLoaded', function() {
   var stateSelect = document.getElementsByClassName('state-select')[0];
   var citySelect = document.getElementsByClassName('city-select')[0];
 
-  // add options to state select input
-  countrySelect.addEventListener('change', function() {
-    postAjax('/city_state/state', {country: countrySelect.value}, function(options) {
-      if (Object.keys(options).length > 0) {
-        setOptions(options, stateSelect);
-      } else {
+  if (countrySelect && stateSelect && citySelect) {
+    // add options to state select input
+    countrySelect.addEventListener('change', function() {
+      postAjax('/city_state/state', {country: countrySelect.value}, function(options) {
+        if (Object.keys(options).length > 0) {
+          setOptions(options, stateSelect);
+        } else {
+          citySelect.removeAttribute('disabled');
+          stateSelect.setAttribute('disabled', 'disabled');
+          stateSelect.innerHTML = '';
+        }
+      });
+    });
+
+    // allow user to type in their own city after selecting state and country
+    // remove disabled property for the input
+    stateSelect.addEventListener('change', function() {
+      if (stateSelect.value !== '' && countrySelect.value !== '') {
         citySelect.removeAttribute('disabled');
-        stateSelect.setAttribute('disabled', 'disabled');
-        stateSelect.innerHTML = '';
       }
     });
-  });
-
-  // allow user to type in their own city after selecting state and country
-  stateSelect.addEventListener('change', function() {
-    if (stateSelect.value !== '' && countrySelect.value !== '') {
-      citySelect.removeAttribute('disabled');
-    }
-  });
+  }
 });

@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "navbar";
 @import "home";
+@import "users/sessions";
 
 html, body {
   height: 100%;
@@ -15,6 +17,15 @@ h1, h2, h3, h4, h5 {
   font-family: 'Montserrat', sans-serif;
 }
 
+input {
+  border-radius: 0 !important;
+}
+
+hr {
+  margin: 50px 0;
+  border-top: solid 1px #ddd;
+}
+
 .container, .container-fluid {
   max-width: 1200px;
 }
@@ -22,4 +33,13 @@ h1, h2, h3, h4, h5 {
 .btn {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0;
+}
+
+.bg-img {
+  width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
 }

@@ -1,7 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <h1>Fitbuds</h1>
+      <%= link_to root_path, class:"logo" do %>
+        <h1>Fitbuds</h1>
+      <% end %>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to "LOG IN", new_user_session_path, class: "btn btn-login" %></li>
@@ -10,13 +12,14 @@
   </div>
 </nav>
 
-<div class="home-background-image"></div>
+<div class="bg-img bg-img-home"></div>
 
 <div class="container">
   <div class="jumbotron jumbotron-home">
     <h1>Sport like you have<br>never before.</h1>
   </div>
-  <div class="text" style="height: 1000px;">
+  <div class="text" style="height: 2000px;">
     Additional Content goes here
   </div>
 </div>
+
