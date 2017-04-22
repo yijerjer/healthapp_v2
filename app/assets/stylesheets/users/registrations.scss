@@ -5,8 +5,11 @@
   flex-direction: column;
   justify-content: center;
   form {
-    margin-bottom: 30px;
-    .same-line-fields {
+    margin-bottom: 20px;
+    .inline-group {
+      margin-top: -35px;
+    }
+    .inline-fields {
       margin-top: -15px;
       display: flex;
       justify-content: space-between;
