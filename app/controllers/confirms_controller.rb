@@ -2,6 +2,10 @@ class ConfirmsController < ApplicationController
   before_action :authenticate_user!, :check_user_attributes_exist
   before_action :authourise_user, only: [:accept, :decline]
 
+  def index
+    @confirms = Confirm.of_user(current_user)
+  end
+
   def create
     @confirm = Confirm.new(confirm_params)
     @confirm.match_id = params[:match_id]

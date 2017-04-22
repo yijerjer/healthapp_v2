@@ -1,6 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "navbar";
+@import "sidebar";
 @import "home";
 @import "users/shared";
 @import "users/sessions";
@@ -34,6 +37,15 @@ a {
 .btn {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0;
+  background-color: #00708A;
+  color: #fff;
+  transition: 0.2s;
+  &:hover {
+    color: #fff;
+    background-color: #0092B5;
+    transform: scale(1.02);
+
+  }
 }
 
 .bg-img {
@@ -48,4 +60,12 @@ a {
 .error-msg {
   color: #cc0000;
   margin-top: 2px;
+}
+
+
+.dashboard-content {
+  position: relative;
+  left: 350px;
+  width: calc(100% - 350px);
+  padding: 0 30px;
 }

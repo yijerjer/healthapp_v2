@@ -51,4 +51,6 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :confirms, only: [:index]
+
 end

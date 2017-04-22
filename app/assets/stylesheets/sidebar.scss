@@ -1,0 +1,90 @@
+#sidebar {
+  width: 350px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #232323;
+  border-right: solid 1px #222;
+  box-shadow: 2px 0 10px 0px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+  .topbar {
+    table {
+      width: 100%;
+      td {
+        vertical-align: middle;
+        padding: 15px;
+      }
+      a {
+        color: #fff;
+        &:hover {
+          text-decoration: none;
+        }
+        h1 {
+          text-align: left;
+          margin: 0;
+          font-size: 35pt;
+          font-weight: 900;
+        }
+      }
+      .notification-icon {
+        text-align: center;
+        font-size: 22pt;
+        width: 20%;
+        i {
+          display: block;
+        }
+      }
+    }
+  }
+  .user-info {
+    .user-dp {
+      background-color: #aaa;
+      width: 70%;
+      margin: 30px auto 0 auto;
+      border-radius: 50%;
+      img {
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+  .navigation {
+    margin: 60px 0;
+    ul {
+      text-align: left;
+      font-size: 18pt;
+      list-style: none;
+      padding: 0;
+      a {
+        color: #fff;
+        li {
+          padding: 10px 15px;
+          span {
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+            i {
+              display: inline-block;
+            }
+          }
+        }
+        &:hover {
+          text-decoration: none;
+          li {
+            background-color: #00708A;
+          }
+        }
+      }
+    }
+  }
+  // .logout {
+  //   position: absolute;
+  //   bottom: 0;
+  //   right: 0;
+  //   .btn-logout {
+  //     margin: 20px;
+  //   }
+  // }
+}
