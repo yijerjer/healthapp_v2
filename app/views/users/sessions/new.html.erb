@@ -1,25 +1,28 @@
 <div class="bg-img bg-img-login">
-  <div class="login">
+  <div class="login-signup-card">
     <h1>Fitbuds</h1>
 
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-login" }) do |f| %>
-      <%= link_to "Log in with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-fb-login" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
+      <%= link_to "Log in with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-fb" %>
 
       <div class="hr-or">
         <span>OR</span>
       </div>
 
       <div class="form-group">
-        <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control input-login" %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control user-input-fields" %>
       </div>
 
       <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control input-login" %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control user-input-fields" %>
       </div>
 
+      <p id="login-error" class="error-msg"></p>
+      <br>
+
       <div class="form-group">
-        <%= f.submit "Log in", class: "btn btn-login" %>
+        <%= f.submit "Log in", class: "btn btn-login-signup" %>
       </div>
 
       <% if devise_mapping.rememberable? -%>
@@ -29,7 +32,7 @@
       <% end -%>
     <% end %>
     
-    <p>Don't have an account? <%= link_to "Sign up", new_user_registration_path %> here.</p>
+    <p>Don't have an account? <%= link_to "Sign up", new_user_registration_path %> now.</p>
 
   </div>
 </div>

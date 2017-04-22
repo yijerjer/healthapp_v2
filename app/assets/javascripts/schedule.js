@@ -7,7 +7,7 @@ function showHideLocationFields() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbolinks:load', function() {
   var locationCheckBox = document.getElementById('schedule_use_user_location');
   if (locationCheckBox) {
     locationCheckBox.addEventListener('change', showHideLocationFields);

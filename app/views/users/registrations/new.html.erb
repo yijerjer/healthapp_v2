@@ -1,54 +1,62 @@
-<h2>Sign up</h2>
+<div class="bg-img bg-img-signup">
+  <div class="login-signup-card">
+    <h1>Fitbuds</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+      <%= link_to "Log in with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-fb" %>
+
+      <div class="hr-or">
+        <span>OR</span>
+      </div>
+
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control user-input-fields" %>
+        <p class="error-msg" id="signup-email-error"></p>
+      </div>
+
+      <div class="form-group">
+        <div class="inline-fields">
+          <% @minimum_password_length if @minimum_password_length %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control user-input-fields" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password", class: "form-control user-input-fields" %>
+        </div>
+          <p class="error-msg" id="signup-password-error"></p>
+        
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: "Name", class: "form-control user-input-fields" %>
+        <p class="error-msg" id="signup-name-error"></p>
+      </div>
+
+      <div class="form-group">
+        <%= f.number_field :age, placeholder: "Age", class: "form-control user-input-fields", min: "0" %>
+        <p class="error-msg" id="signup-age-error"></p>
+      </div>
+
+      <div class="form-group">
+        <%= f.select :country, get_countries.map { |key, value| [value, key] }, { prompt: "Country" }, { class: "country-select form-control user-input-fields" } %>
+        <p class="error-msg" id="signup-country-error"></p>
+      </div>
+
+      <div class="form-group">
+        <%= f.select :state, {}, { prompt: "State" }, { disabled: true, class: "state-select form-control user-input-fields" } %>
+        <p class="error-msg" id="signup-state-error"></p>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :city, placeholder: "City", disabled: true, class: "city-select form-control user-input-fields" %>
+        <p class="error-msg" id="signup-city-error"></p>
+      </div>  
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "btn btn-login-signup" %>
+      </div>
+    <% end %>
+
+    <p>Already have an account? <%= link_to "Log in", new_user_session_path %> now.</p>
+
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.number_field :age %>
-  </div>
-
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.select :country, get_countries.map { |key, value| [value, key] }, {}, { class: "country-select" } %>
-  </div>
-
-  <div class="field">
-    <%= f.label :state %><br />
-    <%= f.select :state, {}, {}, { disabled: true, class: "state-select" } %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, { disabled: true, class: "city-select" } %>
-  </div>  
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

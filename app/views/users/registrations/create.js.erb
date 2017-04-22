@@ -1,0 +1,46 @@
+function addHTMLById(id, text) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.innerHTML = text;
+    fadeIn(el);
+  }
+}
+
+function removeInnerHTMLById(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.innerHTML = '';
+  }
+}
+
+var errors = <%= raw @errors %>;
+var attributes = ['email', 'password', 'name', 'age', 'country', 'state', 'city'];
+
+// if there are no errors for a particular attribute, remove the innerHTML of the corresponding <p> tag
+for (var i = 0; i < attributes.length; i++) {
+  if (!Object.keys(errors).includes(attributes[i])) {
+    removeInnerHTMLById('signup-' + attributes[i] + '-error');
+  }  
+}
+
+// check for those that has 'can't be blank'
+for (var key in errors) {
+  if (errors[key][0] === 'can\'t be blank') {
+    addHTMLById('signup-' + key + '-error', key[0].toUpperCase() + key.substr(1, key.length - 1) + ' can\'t be blank.');
+  }
+}
+
+// check email
+if (errors.email && errors.email[0] === 'has already been taken') {
+  addHTMLById('signup-email-error', 'Email is already in use.')
+}
+
+// check password confirmation
+if (errors.password_confirmation && errors.password_confirmation[0] === 'doesn\'t match Password') {
+  addHTMLById('signup-password-error', 'Passwords do not match.')
+}
+
+// check password
+if (errors.password && errors.password[0] === 'is too short (minimum is 6 characters)') {
+  addHTMLById('signup-password-error', 'Password needs to be a minimum of 6 characters.')
+}

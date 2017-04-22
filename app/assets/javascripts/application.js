@@ -15,3 +15,18 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+// custom pure js animation functions
+function fadeIn(el) {
+  el.style.opacity = 0;
+  el.style.display = '';
+
+  var tick = function() {
+    el.style.opacity = +el.style.opacity + 0.05;
+
+    if (+el.style.opacity < 1) {
+      requestAnimationFrame(tick) || setTimeout(tick, 16);
+    }
+  };
+  tick();
+}

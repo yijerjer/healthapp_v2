@@ -27,7 +27,7 @@ function setOptions(options, elem) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbolinks:load', function() {
   var countrySelect = document.getElementsByClassName('country-select')[0];
   var stateSelect = document.getElementsByClassName('state-select')[0];
   var citySelect = document.getElementsByClassName('city-select')[0];
