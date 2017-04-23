@@ -30,3 +30,16 @@ function fadeIn(el) {
   };
   tick();
 }
+
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - 0.05;
+
+    if (+el.style.opacity > 0) {
+      requestAnimationFrame(tick);
+    }
+  };
+  tick();
+}

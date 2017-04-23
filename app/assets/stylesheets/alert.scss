@@ -1,0 +1,26 @@
+.alert {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 300px;
+  padding: 0;
+  z-index: 2;
+  div {
+    width: 100%;
+    overflow: auto;
+    padding: 5px;
+    padding-bottom: 0;
+  }
+    i {
+      display: block;
+      float: right;
+      padding-bottom: 0;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  p {
+    padding: 15px;
+    padding-top: 0;
+  }
+}

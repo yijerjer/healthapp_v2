@@ -13,7 +13,10 @@
 
   <body>
   <% flash.each do |type, message| %>
-    <%= content_tag :div, message, class: "alert alert-#{type}" %>
+  <div class="alert alert-<%= type %>">
+    <div><%= icon('times') %></div> 
+    <p><%= message %></p>
+  </div>
   <% end %>
 
     <%= yield %>
