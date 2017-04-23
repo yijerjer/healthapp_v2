@@ -1,8 +1,60 @@
 <%= render 'layouts/sidebar' %>
 
-<div class="dashboard-content">
-  <h3>user#index page</h3>
-
-  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<div class="dashboard-content index-page">
+  <div class="new-schedule">
+    <h3>New Schedule</h3>
+    <%= form_for :schedule, url: schedules_path do |f| %>
+      <div class="card">
+          <div id="where">
+            <table>
+              <tr>
+                <td><h4>Where</h4></td>
+                <td>
+                  <div class="use-own-location">
+                    <%= f.check_box :use_user_location, data: { country: current_user.country, state: current_user.state, city: current_user.city } %> 
+                    <span>Use your city</span>
+                  </div>
+                </td>
+              </tr>
+              <div class="location-fields">
+                <tr>
+                  <td><%= f.select :country, get_countries.map { |key, value| [value, key] }, { prompt: "Country" }, { class: "schedule-input-fields country-select form-control" } %></td>
+                  <td><%= f.select :state, {}, { prompt: "State" }, { disabled: true, class: "schedule-input-fields state-select form-control" } %></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><%= f.text_field :city, { placeholder: "City", disabled: true, class: "schedule-input-fields city-select form-control" } %></td>
+                </tr>
+              </div>
+            </table>
+          </div>
+          <div id="when">
+            <table>
+              <tr>
+                <td><h4>When</h4></td>
+              </tr>
+              <tr>
+                <td><%= f.date_field :date, class: "schedule-input-fields form-control" %></td>
+                <td><%= f.time_field :time, class: "schedule-input-fields form-control" %></td>
+              </tr>
+            </table>
+          </div>
+          <div id="what">
+            <table>
+              <tr>
+                <td><h4>What</h4></td>
+              </tr>
+              <tr>
+                <td><%= f.select :activity_id, Activity.all.map { |activity| [activity.name, activity.id] }, {}, { class: "schedule-input-fields form-control" } %></td>
+              </tr>
+              <tr>
+                <td><div class="scaffold"></div></td>
+              </tr>
+            </table>
+            <div class="create-schedule-btn">
+              <%= f.submit "Create", class: "btn btn-lg" %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-

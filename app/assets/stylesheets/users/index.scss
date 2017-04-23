@@ -1,0 +1,70 @@
+.index-page {
+  .new-schedule {
+    width: 95%;
+    height: 200px;
+    margin: 20px auto;
+    h3 {
+      font-weight: 900;
+    }
+    form {
+      .schedule-input-fields {
+        height: 40px;
+        width: 100%;
+        border: none;
+        border-bottom: solid 2px #0092B5;
+        box-shadow: none;
+        font-size: 12pt;
+        background-color: #fff;
+        transition: 0.2s;
+        &:focus {
+          transform: scale(1.02);
+        }
+      }
+    }
+    .card {
+      width: 100%;
+      display: table;
+      div {
+        display: table-cell;
+        width: 33%;
+        table {
+          width: 100%;
+          margin-bottom: 15px;
+          td {
+            width: 50%;
+            padding: 10px 15px;
+          }
+        }
+      }
+      #where {
+        .use-own-location {
+          width: 100%;
+          float: right;
+          text-align: right;
+        }
+      }
+      #when {
+        border-left: solid 1px #ccc;
+        border-right: solid 1px #ccc;
+      }
+      #what {
+        width: 100%;
+        table {
+          width: 50%;
+          display: table-cell;
+          .scaffold {
+            height: 55px;
+          }
+        }
+        .create-schedule-btn {
+          display: table-cell;
+          text-align: center; 
+          vertical-align: middle;
+          .btn {
+            padding: 15px 30px;
+          }
+        }
+      }
+    }
+  }
+}
