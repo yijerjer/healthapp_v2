@@ -36,7 +36,7 @@ document.addEventListener('turbolinks:load', function() {
       postAjax('/city_state/state', {country: countrySelect.value}, function(options) {
         if (Object.keys(options).length > 0) {
           setOptions(options, stateSelect);
-          elem.removeAttribute('disabled');
+          stateSelect.removeAttribute('disabled');
         } else {
           citySelect.removeAttribute('disabled');
           stateSelect.setAttribute('disabled', 'true');

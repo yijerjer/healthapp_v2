@@ -3,17 +3,13 @@
 <% @schedule.available_matches.each do |schedule| %>
   <p><%= schedule.id %></p>
   <h3><%= schedule.user.name %></h3>
-  <% if ScheduleResponse.find_by_responder_id_and_receiver_id(@schedule.id, schedule.id) %>
-    Responded already
-  <% else %>
-    <%= form_for :schedule_response, url: accept_schedule_schedule_responses_path(schedule) do |f| %>
-      <%= f.hidden_field :responder_id, value: @schedule.id %>
-      <%= f.submit "Accept" %>
-    <% end %>
-    <%= form_for :schedule_response, url: decline_schedule_schedule_responses_path(schedule) do |f| %>
-      <%= f.hidden_field :responder_id, value: @schedule.id %>
-      <%= f.submit "Decline" %>  
-    <% end %>
+  <%= form_for :schedule_response, url: accept_schedule_schedule_responses_path(schedule) do |f| %>
+    <%= f.hidden_field :responder_id, value: @schedule.id %>
+    <%= f.submit "Accept" %>
+  <% end %>
+  <%= form_for :schedule_response, url: decline_schedule_schedule_responses_path(schedule) do |f| %>
+    <%= f.hidden_field :responder_id, value: @schedule.id %>
+    <%= f.submit "Decline" %>  
   <% end %>
 <% end %>
 

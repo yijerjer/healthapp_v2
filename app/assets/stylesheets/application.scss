@@ -46,7 +46,10 @@ a {
     color: #fff;
     background-color: #0092B5;
     transform: scale(1.02);
-
+  }
+  &:focus {
+    color: #fff;
+    text-decoration: underline;
   }
 }
 

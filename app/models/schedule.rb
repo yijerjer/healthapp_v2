@@ -41,7 +41,11 @@ class Schedule < ApplicationRecord
     date_range = ((self.time.to_date - 2)..(self.time.to_date + 2)).to_a
     schedules = schedules.where("date(time) IN (?)", date_range)
 
-    # remove their own schedule
+    # remove those that has already been responded to
+    schedule_ids = ScheduleResponse.where(responder_id: self.id).pluck(:receiver_id)
+    schedules = schedules.reject { |schedule| schedule_ids.include?(schedule.id) }
+
+    # remove their own schedules
     return schedules.reject { |schedule| schedule.user_id == self.user_id }
   end
 
