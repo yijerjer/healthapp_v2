@@ -15,6 +15,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     sign_in(user, scope: :user)
+    cookies.signed[:user_id] = user.id
     redirect_to redirect_path, success: flash_message
     
   end

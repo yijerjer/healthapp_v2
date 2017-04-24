@@ -22,9 +22,9 @@ class UsersController < ApplicationController
     
     if @user.update(password_params)
       bypass_sign_in(@user)
+      cookies.signed[:user_id] = @user.id
       redirect_to authenticated_user_root_path, success: "Created password."
     else
-      byebug
       redirect_to :back, danger: "Failed to create password"
     end
   end
@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     if user_update_params[:current_password].present?
       if @user.update(user_update_params)
         bypass_sign_in(@user)
+        cookies.signed[:user_id] = @user.id
         redirect_to user_path(@user), success: "Update successful"
       else
         p @user.errors.messages
