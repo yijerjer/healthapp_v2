@@ -1,0 +1,33 @@
+.chat {
+  width: 600px;
+  height: 800px;
+  margin: 0 auto;
+  position: relative;
+  .type-area {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    form {
+      width: 100%;
+      padding: 10px 0;
+      border-top: solid 1px #ccc;
+      display: flex;
+      justify-content: space-around;
+      textarea {
+        width: 77%;
+        resize: none;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: none;
+        font-size: 12pt;
+        &:focus {
+          border: solid 1px #0070BA;
+        }
+      }
+      input {
+        width: 18%;
+        border-radius: 5px !important;
+      }
+    }
+  }
+}
