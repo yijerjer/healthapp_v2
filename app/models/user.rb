@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def attributes_exists?
-    return self.city.present? && self.state.present? && self.country.present? && self.name.present? && self.age.present?
+    return self.city.present? && self.state.present? && self.country.present? && self.name.present? && self.age.present? || self.avatar?
   end
 
   private

@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   skip_before_action :get_user, only: [:index]
 
   def index
+    @schedule = Schedule.new
+    @matches = Match.matches_of_user(current_user)
+    @confirms = Confirm.confirms_of_user(current_user)
   end
 
   def show

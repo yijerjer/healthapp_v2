@@ -2,6 +2,7 @@ class Activity < ApplicationRecord
   # associations
   has_many :users, through: :user_activity
   has_many :schedules
+  has_many :confirms
 
   # validations
   validates :name, presence: true

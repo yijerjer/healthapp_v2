@@ -57,12 +57,75 @@
   </div>
   <div class="lower-index">
     <div class="available-matches">
-      <h3>Available Matches</h3>
-      <div class="card"></div>
+      <h3>Your Matches</h3>
+      <div class="card">
+        <% if @matches.length == 0 %>
+          <p class="none-msg">No matches yet. Create a schedule to find a match.</p>
+        <% else %>
+          <% @matches.each do |match| %>
+            <%= link_to match_path(match) do %>
+              <div class="match-row">
+                <% other_user = match.other_user(current_user) %>
+                <% user_schedule = match.get_user_schedule(current_user) %>
+
+                <%= image_tag other_user.avatar_url(:thumb) %>
+                <div class="other-user-info">
+                  <h4><%= other_user.name %></h4>
+                  <p><%= other_user.age %></p>
+                </div>
+                <div class="match-info">
+                  <table>
+                    <tr>
+                      <td class="attr-name">Where</td>
+                      <td class="attr-info"><%= "#{user_schedule.city}, #{user_schedule.state}" %></td>
+                    </tr>
+                    </table>
+                    <table>
+                    <tr>
+                      <td class="attr-name">When</td>
+                      <td class="attr-info"><%= user_schedule.time.strftime("%A %d-%m-%Y") %></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="match-activity">
+                  <p><%= user_schedule.activity.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="upcomings">
       <h3>Upcomings</h3>
-      <div class="card"></div>
+      <div class="card">
+        <% if @confirms.length == 0 %>
+          <p class="none-msg">Currently no upcomings.</p>
+        <% else %>
+          <% @confirms.each do |confirm| %>
+            <div class="confirm-row">
+              <div class="confirm-activity">
+                <p><%= confirm.activity.name %></p>
+              </div>
+              <div class="vr"></div>
+              <div class="confirm-info">
+                <table>
+                  <tr>
+                    <td class="attr-name">Where</td>
+                    <td class="attr-info"><%= "#{confirm.street}, #{confirm.city}, #{confirm.state}, #{confirm.country}" %></td>
+                  </tr>
+                  </table>
+                  <table>
+                  <tr>
+                    <td class="attr-name">When</td>
+                    <td class="attr-info"><%= confirm.time.strftime("%A %d-%m-%Y") %></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ class Confirm < ApplicationRecord
 
   # associations
   belongs_to :match
+  belongs_to :activity
 
   #validations
   validates :match_id, :activity_id, :time, :street, :city, :state, :country, presence: true
@@ -10,6 +11,16 @@ class Confirm < ApplicationRecord
 
   # callbacks
   before_save :merge_date_time
+
+  # scopes
+  scope :confirms_of_user, -> (user) {
+    user_id = user.id
+
+    Confirm.joins(match: [:schedule1, :schedule2]).where(
+      "schedules.user_id = :id OR schedule2s_matches.user_id = :id",
+      id: user_id
+    )
+  }
 
 
   def schedules
@@ -31,16 +42,6 @@ class Confirm < ApplicationRecord
   # get the other user of the confirm
   def other_user(user)
     self.users.reject { |u| u == user }[0]
-  end
-
-  # // get all confirms with user involved
-  def self.of_user(user)
-    user_id = user.id
-
-    Confirm.joins(match: [:schedule1, :schedule2]).where(
-      "schedules.user_id = :id OR schedule2s_matches.user_id = :id",
-      id: user_id
-    )
   end
 
 end

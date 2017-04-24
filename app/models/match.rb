@@ -9,7 +9,7 @@ class Match < ApplicationRecord
   validate :unique_schedule_ids
 
   # scope
-  scope :user_matches, -> (user) {
+  scope :matches_of_user, -> (user) {
     joins(:schedule1, :schedule2).where("schedules.user_id = :id OR schedule2s_matches.user_id = :id", id: user.id)
   }
 
@@ -19,6 +19,19 @@ class Match < ApplicationRecord
 
   def users
     User.where(id: self.schedules.pluck(:user_id))
+  end
+
+  def other_user(user)
+    self.users.reject { |u| u == user }[0]
+  end
+
+  def get_user_schedule(user)
+    if self.users.include?(user)
+      self.schedule1.user_id == user.id ? schedule1 : schedule2
+    else
+      nil
+    end
+
   end
 
   private
