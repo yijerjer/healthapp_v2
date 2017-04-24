@@ -52,6 +52,7 @@ Rails.application.routes.draw do
         post 'decline'
       end
     end
+    resources :messages, only: [:create]
   end
 
   resources :confirms, only: [:index]

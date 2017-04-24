@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417140507) do
+ActiveRecord::Schema.define(version: 20170424132435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 20170417140507) do
     t.datetime "updated_at",   null: false
     t.index ["schedule1_id"], name: "index_matches_on_schedule1_id", using: :btree
     t.index ["schedule2_id"], name: "index_matches_on_schedule2_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "schedule_responses", force: :cascade do |t|
