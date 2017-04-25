@@ -5,7 +5,7 @@ class Message < ApplicationRecord
 
   # validations
   validates :match_id, :user_id, :content, presence: true
-  validates :user_in_match
+  validate :user_in_match
 
   private
 

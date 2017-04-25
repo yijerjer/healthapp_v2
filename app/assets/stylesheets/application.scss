@@ -2,3 +2,77 @@
 *= require_self
 *= require_tree .
 */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Hind';
+  font-size: 12pt;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+input, select {
+  border-radius: 0 !important;
+}
+
+a {
+  color: #00708A;
+}
+
+.container, .container-fluid {
+  max-width: 1200px;
+}
+
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0;
+  background-color: #00708A;
+  color: #fff;
+  transition: 0.2s;
+  &:hover {
+    color: #fff;
+    background-color: #0092B5;
+    transform: scale(1.02);
+  }
+  &:focus {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+.bg-img {
+  width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
+}
+
+.error-msg {
+  color: #cc0000;
+  margin-top: 2px;
+}
+
+
+.dashboard-content {
+  position: relative;
+  height: 100%;
+  left: 400px;
+  width: calc(100% - 400px);
+  padding: 0 30px;
+}
+
+.card {
+  border: solid 1px #ccc;
+}

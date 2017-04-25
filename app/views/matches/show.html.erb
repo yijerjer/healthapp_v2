@@ -1,1 +1,19 @@
 <h3>match#show page</h3>
+
+<div class="card chat">
+  <ul>
+    <% @messages.each do |message| %>
+      <li class="<%= message.user == current_user ? "self" : "other" %>">
+        <div class="message-body">
+          <%= message.content %>
+        </div>
+      </li>  
+    <% end %>
+  </ul>
+  <div class="type-area">
+    <%= form_for :message, url: match_messages_path(@match) do |f| %>
+      <%= f.text_area :content, rows: 1, class: "form-control" %>
+      <%= f.submit "Send", class: "btn" %>
+    <% end %>
+  </div>
+</div>

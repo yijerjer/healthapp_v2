@@ -12,7 +12,7 @@ module ApplicationCable
       if verified_user = User.find_by_id(cookies.signed[:user_id])
         verified_user
       else
-        reject_unauthourized_connection
+        reject_unauthorized_connection
       end
     end
   end

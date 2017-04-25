@@ -3,6 +3,34 @@
   height: 800px;
   margin: 0 auto;
   position: relative;
+  ul {
+    list-style: none;
+    padding: 10px;
+    li {
+      width: 100%;
+      display: flex;
+      margin: 20px 0;
+      .message-body {
+        max-width: 60%;
+        border-radius: 5px;
+        padding: 10px;
+      }
+    }
+    .self {
+      text-align: right;
+      justify-content: flex-end;
+      .message-body {
+        background-color: #00708A;
+        color: #fff;
+      }
+    }
+    .other {
+      text-align: left;
+      .message-body {
+        background-color: #eee;
+      }
+    }
+  }
   .type-area {
     position: absolute;
     bottom: 0;
@@ -21,7 +49,7 @@
         box-shadow: none;
         font-size: 12pt;
         &:focus {
-          border: solid 1px #0070BA;
+          border: solid 1px #00708A;
         }
       }
       input {
