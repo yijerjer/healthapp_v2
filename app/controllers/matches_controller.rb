@@ -11,7 +11,7 @@ class MatchesController < ApplicationController
       redirect_to :back, danger: "Unauthouried action."
     end
 
-    @messages = Message.where(match_id: params[:id]).order('created_at desc')
+    @messages = Message.includes(:user).where(match_id: params[:id]).order('created_at')
   end
 
 end

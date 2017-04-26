@@ -1,6 +1,6 @@
 <h3>match#show page</h3>
 
-<div class="card chat">
+<div class="card" id="chat" data-matchid="<%= @match.id %>" data-selfid="<%= current_user.id %>" data-otherid="<%= @match.other_user(current_user).id %>">
   <ul>
     <% @messages.each do |message| %>
       <li class="<%= message.user == current_user ? "self" : "other" %>">
@@ -11,7 +11,7 @@
     <% end %>
   </ul>
   <div class="type-area">
-    <%= form_for :message, url: match_messages_path(@match) do |f| %>
+    <%= form_for :message, url: match_messages_path(@match), remote: true, html: { id: "create-message-form" } do |f| %>
       <%= f.text_area :content, rows: 1, class: "form-control" %>
       <%= f.submit "Send", class: "btn" %>
     <% end %>
