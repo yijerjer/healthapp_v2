@@ -1,0 +1,57 @@
+.matches-index {
+  width: 95%;
+  margin: 0 auto 20px auto;
+  h3 {
+    margin-top: 0;
+    padding-top: 20px;
+    font-weight: 900;
+  }
+  .matches-all {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap:  wrap;
+    a {
+      color: #000;
+      &:hover {
+        text-decoration: none;
+        .match-card {
+          transform: scale(1.02);
+        }
+      }
+    }
+    .match-card {
+      width: 400px;
+      height: 150px;
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 40px 20px 0;
+      padding: 20px;
+      transition: 0.2s;
+      img {
+        border-radius: 50%;
+      }
+      .match-info {
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        p {
+          margin: 0;
+        }
+        .other-user-name {
+          font-size: 16pt;
+        }
+        table {
+          .attr-name {
+            width: 60px;
+            color: #999;
+          }
+        }
+        .match-activity {
+          color: #00708A;
+          font-size: 18pt;
+        }
+      }
+    }
+  }
+}

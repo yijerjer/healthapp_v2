@@ -1,7 +1,19 @@
+.match-show {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 0 auto;
+}
+
+.match-details {
+  width: 48%;
+}
+
 #chat {
-  width: 600px;
-  height: 800px;
-  margin: 0 auto;
+  width: 48%;
+  height: 96%;
+  margin: auto;
   position: relative;
   ul {
     max-height: 100%;

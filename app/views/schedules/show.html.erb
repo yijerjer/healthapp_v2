@@ -43,7 +43,7 @@
       <h3>Available Matches</h3>
       <% available_matches.each do |schedule| %>
         <div class="card match">
-          <%= image_tag schedule.user.avatar_url(:thumb) %>
+          <%= image_tag schedule.user.avatar? ? schedule.user.avatar_url(:thumb) : "default-dp.png", height: "100px" %>
           <div class="other-user-info">
             <h4><%= schedule.user.name %></h4>
             <p><%= schedule.user.age %></p>

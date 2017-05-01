@@ -1,1 +1,29 @@
-<h3>match#index page</h3>
+<%= render "layouts/sidebar" %>
+
+<div class="dashboard-content">
+  <div class="matches-index">
+    <h3>Your Matches</h3>
+    <div class="matches-all">
+      <% @matches.each do |match| %>
+        <%= link_to match_path(match) do %>
+          <div class="card match-card">
+            <% other_user = match.other_user(current_user) %>
+            <% user_schedule = match.get_user_schedule(current_user) %>    
+
+            <%= image_tag other_user.avatar? ? other_user.avatar_url(:thumb) : "default-dp.png", height: "100px" %>
+            <div class="match-info">
+              <p class="other-user-name"><%= other_user.name %></p>
+              <table>
+                <tr>
+                  <td class="attr-name">When</td>
+                  <td><%= user_schedule.time.strftime("%A %d-%m-%Y") %></td>
+                </tr>
+              </table>
+              <p class="match-activity"><%= user_schedule.activity.name %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
