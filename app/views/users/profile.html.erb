@@ -1,0 +1,75 @@
+<%= render "layouts/sidebar" %>
+
+<div class="dashboard-content profile-content">
+  <div class="card profile">
+    <div class="tabs-row">
+      <div class="tab active edit-profile"><h4>Edit Profile</h4></div>
+      <div class="tab change-password"><h4>Change Password</h4></div>
+      <div class="tab change-location"><h4>Change Location</h4></div>
+    </div>
+    <%= form_for :user, url: user_path(@user), html: { method: :put } do |f| %>
+      <div class="info-display" id="edit-profile-display">
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control input-fields" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control input-fields" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :age %>
+          <%= f.number_field :age, class: "form-control input-fields", min: "0" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Update", class: "btn" %>
+        </div>
+      </div>
+      <div class="info-display" id="change-password-display" style="display: none">
+        <div class="form-group">
+          <%= f.label "New password" %>
+          <%= f.password_field :password, class: "form-control input-fields" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Confirm new password" %>
+          <%= f.password_field :password_confirmation, class: "form-control input-fields" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Current password" %>
+          <%= f.password_field :current_password, class: "form-control input-fields" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Update password", class: "btn" %>
+        </div>
+      </div>
+      <div class="info-display" id="change-location-display" style="display: none">
+        <% user_country_code = CS.get.key(@user.country) %>
+
+        <div class="form-group">
+          <%= f.label :country %>
+          <%= f.select :country, get_countries.map { |key, value| [value, key] }, { selected: user_country_code }, { class: "country-select form-control input-fields" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :state %>
+          <%= f.select :state, get_states(user_country_code).map { |key, value| [value, key] }, { selected: CS.get(user_country_code).key(@user.state)}, { class: "state-select form-control input-fields" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :city %>
+          <%= f.text_field :city, { class: "city-select form-control input-fields" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Update", class: "btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

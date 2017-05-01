@@ -22,7 +22,7 @@
     </div>
     <div class="user-details">
       <h3><%= current_user.name %></h3>
-      <%= link_to "Go to Profile", edit_user_path(current_user), class: "btn btn-edit-user" %>
+      <%= link_to "Go to Profile", profile_user_path(current_user), class: "btn btn-edit-user" %>
     </div>
   </div>
 

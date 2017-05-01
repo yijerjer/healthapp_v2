@@ -8,13 +8,10 @@
       font-weight: 900;
     }
     form {
-      .schedule-input-fields {
-        height: 40px;
+      .schedule-fields {
         width: 100%;
-        border: none;
-        border-bottom: solid 2px #0092B5;
+        border-bottom-color: #0092B5;
         box-shadow: none;
-        font-size: 12pt;
         background-color: #fff;
         transition: 0.2s;
         &:focus {

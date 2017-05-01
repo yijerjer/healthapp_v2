@@ -26,7 +26,7 @@ class SchedulesController < ApplicationController
   end
 
   def show
-    @schedule = Schedule.find_by_id(params[:id])
+    @schedule = Schedule.includes(:user).find_by_id(params[:id])
   end
 
   def destroy

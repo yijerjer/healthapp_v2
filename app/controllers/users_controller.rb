@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
+  def profile 
   end
 
   def update
@@ -37,18 +37,20 @@ class UsersController < ApplicationController
       if @user.update(user_update_params)
         bypass_sign_in(@user)
         cookies.signed[:user_id] = @user.id
-        redirect_to user_path(@user), success: "Update successful"
+        flash[:success] = "Update successful."
       else
         p @user.errors.messages
-        redirect_to edit_user_path(@user), danger: "Unable to update password."
+        flash[:danger] = "Unable to update password."
       end
     else
       if @user.update_without_password(user_update_params)
-        redirect_to user_path(@user), success: "Update successful"
+        flash[:success] = "Update successful."
       else
-        redirect_to edit_user_path(@user), danger: "Unable to update user."
+        flash[:danger] = "Unable to update user."
       end
     end
+
+    redirect_to profile_user_path(@user)
   end
 
   def destroy

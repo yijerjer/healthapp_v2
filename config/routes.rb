@@ -16,8 +16,9 @@ Rails.application.routes.draw do
     post 'users' => 'users/registrations#create', as: 'user_registration'
   end
 
-  resources :users, except: [:new, :create] do
+  resources :users, except: [:new, :create, :edit] do
     member do
+      get 'profile'
       get 'add_password'
       patch 'create_password'
     end

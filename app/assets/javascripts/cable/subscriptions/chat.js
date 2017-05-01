@@ -25,8 +25,7 @@ function subscribeToChannel(chat) {
 
       var messageInput = document.getElementById('message_content');
       messageInput.value = '';
-      scrollSlide(chatMessages, chatMessages.scrollHeight);
-      // chatMessages.scrollTop = chatMessages.scrollHeight;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
   });
 
@@ -34,18 +33,8 @@ function subscribeToChannel(chat) {
 }
 
 document.addEventListener('turbolinks:load', function() {
-  // initial adjust + adjust height on input change
-  adjustChatHeight();
-  var messageInput = document.getElementById('message_content');
-  messageInput.addEventListener('keydown', function() {
-    adjustChatHeight();
-  });
-
-  // scroll all the way to the bottom of the chat
   var chat = document.getElementById('chat');
-  var chatMessages = chat.getElementsByTagName('ul')[0];
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-
+  
   // Subscribe to stream, and send text when form is submitted
   if (window.location.pathname.substr(0, 9) === '/matches/') {
     App.chat = subscribeToChannel(chat);
@@ -62,5 +51,16 @@ document.addEventListener('turbolinks:load', function() {
 
       return false;
     });
+    
+    // initial adjust + adjust height on input change
+    adjustChatHeight();
+    var messageInput = document.getElementById('message_content');
+    messageInput.addEventListener('keydown', function() {
+      adjustChatHeight();
+    });
+
+    // scroll all the way to the bottom of the chat
+    var chatMessages = chat.getElementsByTagName('ul')[0];
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 });

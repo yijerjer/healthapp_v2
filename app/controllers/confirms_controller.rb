@@ -34,7 +34,7 @@ class ConfirmsController < ApplicationController
   def authourise_user
     @confirm = Confirm.find_by_id(params[:id])
 
-    unless @confirm.users.include?(current_user) && @confirm.match == params[:match_id])
+    unless @confirm.users.include?(current_user) && @confirm.match == params[:match_id]
       return redirect_to root_path
     end
   end

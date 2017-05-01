@@ -1,0 +1,123 @@
+.schedule-show {
+  width: 95%;
+  margin: 0 auto 20px auto;
+  display: flex;
+  justify-content: space-between;
+  .your-schedule {
+    width: 32%;
+    h3 {
+      margin-top: 0;
+      padding-top: 20px;
+      font-weight: 900;
+    }
+    .card {
+      padding: 20px;
+      table {
+        td {
+          padding: 20px;
+        }
+        .attribute {
+          width: 100px;
+          color: #999;
+        }
+        .detail {
+          &.activity-name {
+            font-size: 20pt;
+            color: #00708A;
+          }
+        }
+      }
+      .schedule-count {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        padding: 20px;
+        .available-count, .current-count {
+          text-align: center;
+          .header {
+            color: #999;
+          }
+          .count {
+            color: #00708A;
+            font-size: 22pt;
+          }
+        }
+      }
+    }
+  }
+  .available-matches {
+    width: 64%;
+    h3 {
+      margin-top: 0;
+      padding-top: 20px;
+      font-weight: 900;
+    }
+    .match {
+      margin-bottom: 40px;
+      padding: 20px;
+      display: flex;
+      img {
+        border-radius: 50%;
+        margin-right: 30px;
+      }
+      .other-user-info {
+        width: 23%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        h4 {
+          font-size: 18pt;
+        }
+        p {
+          font-size: 14pt;
+          color: #999;
+        }
+      }
+      .schedule-datetime {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .attr-name {
+          width: 60px;
+          color: #999;
+        }
+      }
+      .response-btns {
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        form {
+          height: 90%;
+        }
+        .btn-round {
+          height: 100%;
+          width: 90px;
+          margin: auto;
+          background-color: #fff;
+          border-radius: 50% !important;
+          border: solid 2px;
+          font-size: 24pt;
+          &.btn-accept {
+            color: #008000;
+            border-color: #008000;
+            &:hover {
+              color: #fff;
+              background-color: #008000;
+            }
+          }
+          &.btn-decline {
+            color: #8B0000;
+            border-color: #AB0000;
+            &:hover {
+              color: #fff;
+              background-color: #AB0000;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

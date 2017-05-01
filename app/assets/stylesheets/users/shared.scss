@@ -34,13 +34,9 @@
         padding: 0 10px;
       }
     }
-    .user-input-fields {
-      height: 40px;
+    .user-fields {
       margin-top: 30px;
-      border: none;
-      border-bottom: solid 2px #ccc;
-      box-shadow: none;
-      font-size: 14pt;
+      border-bottom-color: #ccc;
       transition: 0.2s;
       &:focus {
         transform: scale(1.02);

@@ -25,6 +25,19 @@ input, select {
   border-radius: 0 !important;
 }
 
+.input-fields {
+  height: 40px;
+  border: none;
+  border-bottom: solid 2px;
+  box-shadow: none;
+  font-size: 12pt;
+  transition: 0.2s;
+  &:focus {
+    box-shadow: none;
+    transform: scale(1.02);
+  }
+}
+
 a {
   color: #00708A;
 }
@@ -42,7 +55,6 @@ a {
   &:hover {
     color: #fff;
     background-color: #0092B5;
-    transform: scale(1.02);
   }
   &:focus {
     color: #fff;

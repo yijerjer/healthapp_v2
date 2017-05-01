@@ -1,4 +1,4 @@
-<%= render 'layouts/sidebar' %>
+<%= render "layouts/sidebar" %>
 
 <div class="dashboard-content index-page">
   <div class="upper-index">
@@ -17,11 +17,11 @@
               </td>
             </tr>
             <tr>
-              <td><%= f.select :country, get_countries.map { |key, value| [value, key] }, { prompt: "Country" }, { class: "schedule-input-fields country-select form-control" } %></td>
-              <td><%= f.select :state, {}, { prompt: "State" }, { disabled: true, class: "schedule-input-fields state-select form-control" } %></td>
+              <td><%= f.select :country, get_countries.map { |key, value| [value, key] }, { prompt: "Country" }, { class: "input-fields schedule-fields country-select form-control" } %></td>
+              <td><%= f.select :state, {}, { prompt: "State" }, { disabled: true, class: "input-fields schedule-fields state-select form-control" } %></td>
             </tr>
             <tr>
-              <td colspan="2"><%= f.text_field :city, { placeholder: "City", disabled: true, class: "schedule-input-fields city-select form-control" } %></td>
+              <td colspan="2"><%= f.text_field :city, { placeholder: "City", disabled: true, class: "input-fields schedule-fields city-select form-control" } %></td>
             </tr>
           </table>
         </div>
@@ -31,8 +31,8 @@
               <td><h4>When</h4></td>
             </tr>
             <tr>
-              <td><%= f.date_field :date, class: "schedule-input-fields form-control" %></td>
-              <td><%= f.time_field :time, class: "schedule-input-fields form-control" %></td>
+              <td><%= f.date_field :date, class: "input-fields schedule-fields form-control" %></td>
+              <td><%= f.time_field :time, class: "input-fields schedule-fields form-control" %></td>
             </tr>
           </table>
         </div>
@@ -42,7 +42,7 @@
               <td><h4>What</h4></td>
             </tr>
             <tr>
-              <td><%= f.select :activity_id, Activity.all.map { |activity| [activity.name, activity.id] }, {}, { class: "schedule-input-fields form-control" } %></td>
+              <td><%= f.select :activity_id, Activity.all.map { |activity| [activity.name, activity.id] }, {}, { class: "input-fields schedule-fields form-control" } %></td>
             </tr>
             <tr>
               <td><div class="scaffold"></div></td>

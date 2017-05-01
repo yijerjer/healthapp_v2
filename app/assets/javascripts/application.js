@@ -35,7 +35,7 @@ function fadeOut(el) {
   el.style.opacity = 1;
 
   var tick = function() {
-    el.style.opacity = +el.style.opacity - 0.05;
+    el.style.opacity = +el.style.opacity - 0.08;
 
     if (+el.style.opacity > 0) {
       requestAnimationFrame(tick);
