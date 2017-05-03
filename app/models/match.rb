@@ -21,6 +21,14 @@ class Match < ApplicationRecord
     User.where(id: self.schedules.pluck(:user_id))
   end
 
+  def user1
+    self.schedule1.user
+  end
+
+  def user2
+    self.schedule1.user
+  end
+
   def other_user(user)
     self.users.reject { |u| u == user }[0]
   end
@@ -31,7 +39,6 @@ class Match < ApplicationRecord
     else
       nil
     end
-
   end
 
   private

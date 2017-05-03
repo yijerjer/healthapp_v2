@@ -3,12 +3,130 @@
 <div class="dashboard-content">
   <div class="match-show">
     <div class="match-details">
-      Your schedule
-      <br>
-      Other User + schedule
-      <br>
-      Confirm New
-      <br>
+      <% other_user = @match.other_user(current_user) %>
+      <% user_schedule = @match.get_user_schedule(current_user) %>
+      <% other_user_schedule = @match.get_user_schedule(other_user) %>
+      <div class="match-show-header">
+        <h3>Match with . . .</h3>
+      </div>
+      
+      <div class="user-info">
+        <%= image_tag other_user.avatar? ? other_user.avatar_url(:medium) : "default-dp.png" %>
+        <div class="details">
+          <h2><%= other_user.name %></h2>
+          <p><%= other_user.age %></p>
+          <p>from <span><%= "#{other_user.city}, #{other_user.state}, #{other_user.country}" %></span></p>
+        </div>
+      </div>
+
+      <div class="schedule-info">
+        <h3>Schedule</h3>
+        <table class="shared">
+          <tr>
+            <td class="attribute">What</td>
+            <td class="detail activity-name"><%= user_schedule.activity.name %></td>
+            <td class="attribute">Where</td>
+            <td class="detail"><%= "#{user_schedule.city}, #{user_schedule.state}, #{user_schedule.country}" %></td>
+          </tr>
+        </table>
+
+        <div class="card">
+          <div class="yours">
+            <h4>Yours</h4>
+            <table>
+              <tr>
+                <td class="attribute">Day</td>
+                <td class="detail"><%= user_schedule.time.strftime("%A %d-%m-%Y") %></td>
+              </tr>
+              <tr>
+                <td class="attribute">Time</td>
+                <td class="detail"><%= user_schedule.time.strftime("%I:%M %p") %></td>
+              </tr>
+            </table>
+          </div>
+          <div class="vr"></div>
+          <div class="theirs">
+            <h4>Theirs</h4>
+            <table>
+              <tr>
+                <td class="attribute">Day</td>
+                <td class="detail"><%= other_user_schedule.time.strftime("%A %d-%m-%Y") %></td>
+              </tr>
+              <tr>
+                <td class="attribute">Time</td>
+                <td class="detail"><%= other_user_schedule.time.strftime("%I:%M %p") %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm">
+        <h3>Confirm</h3>
+        <div class="card">
+          <% confirm = @match.confirm %>
+          <% if confirm %>
+            <table>
+              <tr>
+                <td class="form-label">What</td>
+              </tr>
+              <tr>
+                <td><%= confirm.activity.name %></td>
+              </tr>
+              <tr>
+                <td class="form-label">Where (Specific Location)</td>
+              </tr>
+              <tr>
+                <td colspan="2"><%= confirm.location %></td>
+              </tr>
+              <tr>
+                <td class="form-label">When</td>
+                <td class="form-label">Time</td>
+              </tr>
+              <tr>
+                <td class="datetime"><%= confirm.time.strftime("%A %d-%m-%Y") %></td>
+                <td class="datetime"><%= confirm.time.strftime("%I:%M %p") %></td>
+              </tr>
+              <tr>
+                <% if confirm.user1_id && confirm.user2_id %>
+                  <td class="status"><span><%= icon("check") %></span> Confirmed</td>
+                <% elsif (@match.user1 == current_user && confirm.user1_id == current_user.id) || (@match.user2 == current_user && confirm.user2_id == current_user.id) %>
+                  <td class="status"><span><%= icon("clock-o") %></span> Pending confirm from <%= other_user.name %></td>
+                <% else %>
+                  <td><%= link_to "Confirm", accept_match_confirm_path(@match, confirm), method: :post, class: "btn" %>&ensp; or <%= link_to "decline", decline_match_confirm_path(@match, confirm), method: :post %></td>
+                <% end %>
+              </tr>
+            </table>
+          <% else %>
+            <%= form_for :confirm, url: match_confirms_path(@match) do |f| %>
+              <table>
+                <tr>
+                  <td class="form-label">What</td>
+                </tr>
+                <tr>
+                  <td><%= f.select :activity_id, Activity.all.map { |activity| [activity.name, activity.id] }, {selected: user_schedule.activity.id}, { class: "input-fields form-control" } %></td>
+                </tr>
+                <tr>
+                  <td class="form-label">Where (Specific Location)</td>
+                </tr>
+                <tr>
+                  <td colspan="2"><%= f.text_field :location, placeholder: "Location", value: "#{user_schedule.city}, #{user_schedule.state}, #{user_schedule.country}",class: "input-fields form-control" %></td>
+                </tr>
+                <tr>
+                  <td class="form-label">When</td>
+                </tr>
+                <tr>
+                  <td class="datetime"><%= f.date_field :date, value: user_schedule.time.strftime("%Y-%m-%d"), class: "input-fields form-control" %></td>
+                  <td class="datetime"><%= f.time_field :time, value: user_schedule.time.strftime("%H:%M"), class: "input-fields form-control" %></td>
+                </tr>
+                <tr>
+                  <td><%= f.submit "Confirm", class: "btn" %></td>
+                </tr>
+              </table>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
 
     </div>
     <div class="card" id="chat" data-matchid="<%= @match.id %>" data-selfid="<%= current_user.id %>" data-otherid="<%= @match.other_user(current_user).id %>">

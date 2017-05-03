@@ -6,7 +6,7 @@ class Confirm < ApplicationRecord
   belongs_to :activity
 
   #validations
-  validates :match_id, :activity_id, :time, :street, :city, :state, :country, presence: true
+  validates :match_id, :activity_id, :time, :location, presence: true
   validates :match_id, uniqueness: true
 
   # callbacks

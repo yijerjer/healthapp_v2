@@ -1,19 +1,142 @@
+
 .match-show {
   width: 95%;
   height: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
 }
 
 .match-details {
   width: 48%;
+  height: 94%;
+  margin: auto 0;
+  .match-show-header {
+    h3 {
+      margin: 0;
+      color: #999;
+      span {
+        color: #00708A;
+        font-weight: 900;
+        font-size: 24pt;
+      }
+    }
+  }
+  .user-info {
+    height: 150px;
+    width: 100%;
+    margin: 20px 0 10px;
+    display: flex;
+    img {
+      height: 100%;
+      border-radius: 50%;
+    }
+    .details {
+      margin: 0 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      h2 {
+        color: #00708A;
+        font-weight: 900;
+      }
+      p {
+        color: #999;
+        span {
+          color: #000;
+        }
+      }
+    }
+  }
+  .schedule-info {
+    h3 {
+      font-weight: 900;
+    }
+    .shared {
+      width: 100%;
+      margin: 20px 0;
+      .attribute {
+        width: 60px;
+        color: #999;
+      }
+      .detail {
+        width: 200px;
+      }
+      .activity-name {
+        font-size: 22pt;
+        color: #00708A;
+      }
+    }
+    .card {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      .yours, .theirs {
+        text-align: center;
+        width: 49%;
+        h4 {
+          font-weight: 900;
+          margin-bottom: 20px;
+        }
+        table {
+          td {
+            padding: 10px;
+            text-align: left;
+          }
+          .attribute {
+            color: #999;
+            width: 70px;
+          }
+        }
+      }
+      .vr {
+        width: 1px;
+        margin: 0 20px;
+        border-left: solid 1px #ccc;
+      }
+    }
+  }
+  .confirm {
+    h3 {
+      font-weight: 900;
+    }
+    .card {
+      padding: 20px;
+      table {
+        width: 100%;
+        td {
+          padding: 5px 20px 10px 20px;
+          &.form-label {
+            padding: 5px 20px 0 20px;
+            color: #999;
+          }
+          &.datetime {
+            width: 50%;
+          }
+          &.status {
+            padding-top: 20px;
+            color: #999;
+            font-size: 14pt;
+          }
+          .btn {
+            margin: 10px 0;
+          }
+          .input-fields {
+            border-color: #00708A;
+            &:hover {
+              border-color: #00708A;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 #chat {
   width: 48%;
-  height: 96%;
-  margin: auto;
+  height: 95%;
+  margin: auto 0;
   position: relative;
   ul {
     max-height: 100%;
