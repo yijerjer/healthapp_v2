@@ -4,20 +4,15 @@
   display: flex;
   justify-content: space-between;
   .your-schedule {
-    width: 32%;
-    h3 {
-      margin-top: 0;
-      padding-top: 20px;
-      font-weight: 900;
-    }
+    width: 30%;
     .card {
       padding: 20px;
       table {
         td {
-          padding: 20px;
+          padding: 15px;
         }
         .attribute {
-          width: 100px;
+          width: 80px;
           color: #999;
         }
         .detail {
@@ -46,55 +41,56 @@
     }
   }
   .available-matches {
-    width: 64%;
-    h3 {
-      margin-top: 0;
-      padding-top: 20px;
-      font-weight: 900;
-    }
+    width: 66%;
     .match {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       padding: 20px;
       display: flex;
+      align-items: center;
       img {
         border-radius: 50%;
-        margin-right: 30px;
       }
       .other-user-info {
-        width: 23%;
+        width: 22%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        flex: none;
+        margin: 0 20px;
         h4 {
-          font-size: 18pt;
+          font-size: 18px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
         p {
-          font-size: 14pt;
+          font-size: 16px;
           color: #999;
         }
       }
       .schedule-datetime {
-        width: 35%;
+        width: 33%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        flex: none;
+        td {
+          padding: 10px 0;
+        }
         .attr-name {
-          width: 60px;
+          width: 50px;
           color: #999;
         }
       }
       .response-btns {
         width: 25%;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
-        form {
-          height: 90%;
-        }
         .btn-round {
-          height: 100%;
-          width: 90px;
-          margin: auto;
+          height: 70px;
+          width: 70px;
+          margin: auto 5px;
           background-color: #fff;
           border-radius: 50% !important;
           border: solid 2px;
@@ -116,6 +112,43 @@
             }
 
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .schedule-show {
+    flex-wrap: wrap;
+    .your-schedule {
+      width: 100%;
+      td {
+        padding: 10px !important;
+      }
+      .schedule-count {
+        margin-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    }
+    .available-matches {
+      width: 100%;
+      .match {
+        flex-wrap: wrap;
+        .other-user-info {
+          width: 40%;
+          flex-grow: 1;
+        }
+        .schedule-datetime {
+          margin-top: 10px;
+          width: 50%;
+          td {
+            padding: 5px 0;
+          }
+        }
+        .response-btns {
+          margin-top: 10px;
+          width: 50%;
         }
       }
     }

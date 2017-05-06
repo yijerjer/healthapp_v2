@@ -1,47 +1,47 @@
 #sidebar {
-  width: 400px;
+  width: 320px;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   background-color: #232323;
   border-right: solid 1px #222;
   box-shadow: 2px 0 10px 0px rgba(0, 0, 0, 0.3);
   text-align: center;
   color: #fff;
-  .topbar {
-    table {
-      width: 100%;
-      td {
-        vertical-align: middle;
-        padding: 15px;
-      }
-      a {
-        color: #fff;
-        &:hover {
-          text-decoration: none;
-        }
-        h1 {
-          text-align: left;
-          margin: 0;
-          font-size: 35pt;
-          font-weight: 900;
-        }
-      }
-      .notification-icon {
-        text-align: center;
-        font-size: 22pt;
-        width: 20%;
-        i {
-          display: block;
-        }
-      }
+  transition: 0.5s;
+  .topnav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    a {
+      color: #fff;
+    }
+    .home-link {
+      flex-grow: 1;
+      text-align: left;
+      h1 {
+        margin: 10px;
+        font-weight: 900;
+      }  
+    }
+    i {
+      padding: 15px;
+      font-size: 20px;
+    }
+    .noti-link {
+      flex: none;
+      height: 100%;
+    }
+    .fa-arrow-left {
+      display: none;
     }
   }
   .user-info {
     .user-dp {
       background-color: #aaa;
-      width: 70%;
+      width: 65%;
       margin: 30px auto 0 auto;
       border-radius: 50%;
       img {
@@ -49,21 +49,28 @@
         border-radius: 50%;
       }
     }
+    h3 {
+      font-size: 20px;
+    }
+    .btn-edit-user {
+      font-size: 12px;
+    }
   }
   .navigation {
     margin: 60px 0;
     ul {
       text-align: left;
-      font-size: 18pt;
+      font-size: 20px;
       list-style: none;
       padding: 0;
       a {
         color: #fff;
         li {
-          padding: 10px 15px;
+          padding: 10px;
           span {
             display: inline-block;
-            width: 50px;
+            width: 40px;
+            margin-right: 5px;
             text-align: center;
             i {
               display: inline-block;
@@ -87,4 +94,14 @@
   //     margin: 20px;
   //   }
   // }
+}
+
+@media screen and (max-width: 480px) {
+  #sidebar {
+    left: -80%;
+    width: 80%;
+    .fa-arrow-left {
+      display: block !important;
+    }
+  }
 }

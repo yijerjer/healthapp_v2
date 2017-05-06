@@ -2,17 +2,13 @@
   .upper-index {
     width: 95%;
     margin: 0 auto 20px auto;
-    h3 {
-      margin-top: 0;
-      padding-top: 20px;
-      font-weight: 900;
-    }
     form {
       .schedule-fields {
         width: 100%;
         border-bottom-color: #0092B5;
         box-shadow: none;
         background-color: #fff;
+        margin-top: 10px;
         transition: 0.2s;
         &:focus {
           transform: scale(1.02);
@@ -21,58 +17,45 @@
     }
     .card {
       width: 100%;
-      display: table;
-      div {
-        display: table-cell;
+      display: flex;
+      #where, #when, #what {
         width: 33%;
-        table {
-          width: 100%;
-          margin-bottom: 15px;
-          td {
-            width: 50%;
-            padding: 10px 15px;
+        flex: none;
+        padding: 15px;
+        .title {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+          h4 {
+            margin: 5px 0;
+            flex-grow: 1;
+            font-size: 15px;
+            font-weight: 600;
+          }
+          .user-own-location {
+            flex: none;
+            display: flex;
           }
         }
-      }
-      #where {
-        .use-own-location {
-          width: 100%;
-          float: right;
-          text-align: right;
+        .adjacent-fields {
+          display: flex;
+          justify-content: space-between;
+          .schedule-fields {
+            width: 48%;
+          }
         }
       }
       #when {
         border-left: solid 1px #ccc;
         border-right: solid 1px #ccc;
       }
-      #what {
-        width: 100%;
-        table {
-          width: 50%;
-          display: table-cell;
-          .scaffold {
-            height: 55px;
-          }
-        }
-        .create-schedule-btn {
-          display: table-cell;
-          text-align: center; 
-          vertical-align: middle;
-          .btn {
-            padding: 15px 30px;
-          }
-        }
-      }
     }
   }
   .lower-index {
     width: 95%;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     display: flex;
     justify-content: space-between;
-    h3 {
-      font-weight: 900;
-    }
     .available-matches {
       width: 64%;
     }
@@ -95,51 +78,62 @@
         }
       }
       .none-msg {
-        margin-top: 40px;
-        text-align: center;
-        color: #999;
+        width: 100%;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888;
+        p {
+          max-width: 80%;
+        }
       }
       .match-row {
         width: 100%;
         height: 120px;
         display: flex;
         padding: 15px;
-        img, div {
-          height: 100%;
-          padding: 0 15px;
-        }
         img {
+          height: 90%;
           border-radius: 50%;
         }
         .other-user-info {
           width: 25%;
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          justify-content: center;
+          flex: none;
+          margin: 0 10px 0 15px;
           h4 {
-            font-size: 18pt;
+            font-size: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
           p {
-            font-size: 14pt;
+            font-size: 16px;
             color: #999;
           }
         }
         .match-info {
-          width: 38%;
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          justify-content: center;
+          flex: none;
+          margin-right: 20px;
+          td {
+            padding: 10px;
+          }
           .attr-name {
+            color: #aaa;
             width: 70px;
           }
         }
         .match-activity {
-          width: 25%;
           display: flex;
-          flex-direction: column;
-          justify-content: center;
+          align-items: center;
           p {
-            font-size: 20pt;
+            font-size: 20px;
             color: #00708A;
             margin: 0;
           }
@@ -147,17 +141,18 @@
       }
       .confirm-row {
         width: 100%;
-        height: 120px;
+        height: 140px;
         display: flex;
         padding: 15px;
+        &:hover {
+          background-color: #f6f6f6;
+        }
         .confirm-activity {
-          width: 35%;
+          width: 30%;
           display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding-right: 20px;
+          align-items: center;
           p {
-            font-size: 16pt;
+            font-size: 20px;
             color: #00708A;
             margin: 0;
           }
@@ -166,18 +161,80 @@
           width: 1px;
           height: 100%;
           border-left: solid 1px #ccc;
+          margin: 0 15px;
         }
         .confirm-info {
           width: 65%;
-          padding-left: 20px;
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          justify-content: center;
           table {
+            td {
+              padding: 5px 0;
+            }
             .attr-name {
-              width: 70px;
+              width: 60px;
+              color: #aaa;
+              text-align: left;
             }
           }
+        }
+      }
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .index-page {
+    .upper-index {
+      .card {
+        flex-direction: column;
+        #where, #when, #what {
+          width: 100%;
+        }
+        #when {
+          border-left: none;
+          border-right: none;
+          border-top: solid 1px #ccc;
+          border-bottom: solid 1px #ccc;
+        }
+      }
+    }
+    .lower-index {
+      flex-direction: column;
+      .available-matches, .upcomings {
+        width: 100%;
+      }
+      .match-row {
+        height: auto !important;
+        align-items: center;
+        flex-wrap: wrap;
+        img {
+          height: 100px;
+        }
+        .other-user-info {
+          height: 120px;
+          width: 60% !important;
+        }
+        .match-info {
+          width: 60%;
+          td {
+            padding-left: 0 !important;
+          }
+          .attr-name {
+            width: 60px !important;
+          }
+        }
+        .match-activity {
+          width: 30%;
         }
       }
     }

@@ -1,86 +1,82 @@
-<%= render "layouts/sidebar" %>
+<div class="schedule-show">
+  <% available_matches = @schedule.available_matches %>
+  <div class="your-schedule">
+    <h4 class="header">Your Schedule</h4>  
+    <div class="card">
+      <table>
+        <tr>
+          <td class="attribute">What</td>
+          <td class="detail activity-name"><%= @schedule.activity.name %></td>
+        </tr>
+        <tr>
+          <td class="attribute">Where</td>
+          <td class="detail"><%= "#{@schedule.city}, #{@schedule.state}, #{@schedule.country}" %></td>
+        </tr>
+        <tr>
+          <td class="attribute">Day</td>
+          <td class="detail"><%= @schedule.time.strftime("%A %d-%m-%Y") %></td>
+        </tr>
+        <tr>
+          <td class="attribute">Time</td>
+          <td class="detail"><%= @schedule.time.strftime("%I:%M %p") %></td>
+        </tr>
+      </table>
 
-<div class="dashboard-content">
-  <div class="schedule-show">
-    <% available_matches = @schedule.available_matches %>
-    <div class="your-schedule">
-      <h3>Your Schedule</h3>  
-      <div class="card">
-        <table>
-          <tr>
-            <td class="attribute">What</td>
-            <td class="detail activity-name"><%= @schedule.activity.name %></td>
-          </tr>
-          <tr>
-            <td class="attribute">Where</td>
-            <td class="detail"><%= "#{@schedule.city}, #{@schedule.state}, #{@schedule.country}" %></td>
-          </tr>
-          <tr>
-            <td class="attribute">Day</td>
-            <td class="detail"><%= @schedule.time.strftime("%A %d-%m-%Y") %></td>
-          </tr>
-          <tr>
-            <td class="attribute">Time</td>
-            <td class="detail"><%= @schedule.time.strftime("%I:%M %p") %></td>
-          </tr>
-        </table>
-
-        <div class="schedule-count">
-          <div class="available-count">
-            <div class="header">Available</div>
-            <div class="count"><%= available_matches.count %></div>
-          </div>
-
-          <div class="current-count">
-            <div class="header">Current</div>
-            <div class="count"><%= @schedule.matches.count %></div>
-          </div>
+      <div class="schedule-count">
+        <div class="available-count">
+          <div class="header">Available</div>
+          <div class="count"><%= available_matches.count %></div>
         </div>
 
+        <div class="current-count">
+          <div class="header">Matched</div>
+          <div class="count"><%= @schedule.matches.count %></div>
+        </div>
       </div>
+
     </div>
-    <div class="available-matches">
-      <h3>Available Matches</h3>
-      <% available_matches.each do |schedule| %>
-        <div class="card match">
-          <%= image_tag schedule.user.avatar? ? schedule.user.avatar_url(:thumb) : "default-dp.png", height: "100px" %>
-          <div class="other-user-info">
-            <h4><%= schedule.user.name %></h4>
-            <p><%= schedule.user.age %></p>
-          </div>
-          <div class="schedule-datetime">
-            <table>
-              <tr>
-                <td class="attr-name">Day</td>
-                <td class="attr-info"><%= schedule.time.strftime("%A %d-%m-%Y") %></td>
-              </tr>
-            </table>
-            <table>
-              <tr>
-                <td class="attr-name">Time</td>
-                <td class="attr-info"><%= schedule.time.strftime("%I:%M %p") %></td>
-              </tr>
-            </table>
-          </div>
-          <div class="response-btns">
-            <%= form_for :schedule_response, url: accept_schedule_schedule_responses_path(schedule) do |f| %>
-              <%= f.hidden_field :responder_id, value: @schedule.id %>
-              <%= button_tag(type: "submit", class: "btn-round btn-accept") do %>
-                <%= icon("check") %>
-              <% end %>
-            <% end %>
-            <%= form_for :schedule_response, url: decline_schedule_schedule_responses_path(schedule) do |f| %>
-              <%= f.hidden_field :responder_id, value: @schedule.id %>
-              <%= button_tag(type: "submit", class: "btn-round btn-decline") do %>
-                <%= icon("times") %>
-              <% end %>
-            <% end %>
-          </div>
+  </div>
+  <div class="available-matches">
+    <h4 class="header">Available Matches</h4>
+    <% available_matches.each do |schedule| %>
+      <div class="card match">
+        <%= image_tag schedule.user.avatar? ? schedule.user.avatar_url(:thumb) : "default-dp.png", height: "100px" %>
+        <div class="other-user-info">
+          <h4><%= schedule.user.name %></h4>
+          <p><%= schedule.user.age %></p>
         </div>
-      <% end %>
-      
-    </div>
+        <div class="schedule-datetime">
+          <table>
+            <tr>
+              <td class="attr-name">Day</td>
+              <td class="attr-info"><%= schedule.time.strftime("%A %d-%m-%Y") %></td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <td class="attr-name">Time</td>
+              <td class="attr-info"><%= schedule.time.strftime("%I:%M %p") %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="response-btns">
+          <%= form_for :schedule_response, url: accept_schedule_schedule_responses_path(schedule) do |f| %>
+            <%= f.hidden_field :responder_id, value: @schedule.id %>
+            <%= button_tag(type: "submit", class: "btn-round btn-accept") do %>
+              <%= icon("check") %>
+            <% end %>
+          <% end %>
+          <%= form_for :schedule_response, url: decline_schedule_schedule_responses_path(schedule) do |f| %>
+            <%= f.hidden_field :responder_id, value: @schedule.id %>
+            <%= button_tag(type: "submit", class: "btn-round btn-decline") do %>
+              <%= icon("times") %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     
   </div>
-
+  
 </div>
+

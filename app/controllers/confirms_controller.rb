@@ -3,7 +3,7 @@ class ConfirmsController < ApplicationController
   before_action :authourise_user, only: [:accept, :decline]
 
   def index
-    @confirms = Confirm.of_user(current_user)
+    @confirms = Confirm.confirms_of_user(current_user)
   end
 
   def create

@@ -14,7 +14,6 @@ html, body {
 
 body {
   font-family: 'Hind';
-  font-size: 12pt;
 }
 
 h1, h2, h3, h4, h5 {
@@ -30,7 +29,7 @@ input, select {
   border: none;
   border-bottom: solid 2px;
   box-shadow: none;
-  font-size: 12pt;
+  font-size: 14px;
   transition: 0.2s;
   &:focus {
     box-shadow: none;
@@ -80,11 +79,39 @@ a {
 .dashboard-content {
   position: relative;
   height: 100%;
-  left: 400px;
-  width: calc(100% - 400px);
+  left: 320px;
+  width: calc(100% - 320px);
   padding: 0 30px;
+  transition: 0.5s;
+}
+
+#darken-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+  z-index: 1;
 }
 
 .card {
   border: solid 1px #ccc;
+}
+
+h4.header {
+  margin-top: 0;
+  padding-top: 20px;
+  font-weight: 900;
+}
+
+@media screen and (max-width: 480px) {
+  .dashboard-content {
+    top: 50px;
+    left: 0;
+    width: 100%;
+    padding: 0 15px;
+  }
 }

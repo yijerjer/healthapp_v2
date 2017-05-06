@@ -1,20 +1,12 @@
 <div id="sidebar">
-  <div class="topbar">
-  <table>
-    <tr>
-      <td>
-        <%= link_to root_path do %>
-          <h1>Fitbuds</h1>
-        <% end %>    
-      </td>
-      <td class="notification-icon">
-        <%= link_to "#" do %>
-          <%= icon('bell-o') %>
-        <% end %>
-      </td>
-    </tr>
-  </table>
-    
+  <div class="topnav">
+    <%= link_to root_path, class: "home-link" do %>
+      <h1>Fitbuds</h1>
+    <% end %>    
+    <%= link_to "#", class: "noti-link" do %>
+      <%= icon("bell-o") %>
+    <% end %>
+    <%= icon("arrow-left") %>
   </div>
   <div class="user-info">
     <div class="user-dp">
@@ -30,7 +22,7 @@
     <ul>
       <%= link_to schedules_path do %>
         <li>
-          <span><%= icon('clock-o') %></span>
+          <span><%= icon("clock-o") %></span>
           Schedules
         </li>
       <% end %>

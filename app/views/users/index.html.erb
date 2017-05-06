@@ -1,54 +1,37 @@
-<%= render "layouts/sidebar" %>
-
-<div class="dashboard-content index-page">
+<div class="index-page">
   <div class="upper-index">
-    <h3>New Schedule</h3>
+    <h4 class="header">New Schedule</h4>
     <%= form_for :schedule, url: schedules_path do |f| %>
       <div class="card">
         <div id="where">
-          <table>
-            <tr>
-              <td><h4>Where</h4></td>
-              <td>
-                <div class="use-own-location">
-                  <%= f.check_box :use_user_location, data: { country: current_user.country, state: current_user.state, city: current_user.city } %> 
-                  <span>Use your city</span>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><%= f.select :country, get_countries.map { |key, value| [value, key] }, { prompt: "Country" }, { class: "input-fields schedule-fields country-select form-control" } %></td>
-              <td><%= f.select :state, {}, { prompt: "State" }, { disabled: true, class: "input-fields schedule-fields state-select form-control" } %></td>
-            </tr>
-            <tr>
-              <td colspan="2"><%= f.text_field :city, { placeholder: "City", disabled: true, class: "input-fields schedule-fields city-select form-control" } %></td>
-            </tr>
-          </table>
+          <div class="title">
+            <h4>Where</h4>  
+            <div class="use-own-location">
+              <%= f.check_box :use_user_location, data: { country: current_user.country, state: current_user.state, city: current_user.city } %> 
+              <span>Use your city</span>
+            </div>
+          </div>
+          <div class="adjacent-fields">
+            <%= f.select :country, get_countries.map { |key, value| [value, key] }, { prompt: "Country" }, { class: "input-fields schedule-fields country-select form-control" } %>
+            <%= f.select :state, {}, { prompt: "State" }, { disabled: true, class: "input-fields schedule-fields state-select form-control" } %>
+          </div>
+          <%= f.text_field :city, { placeholder: "City", disabled: true, class: "input-fields schedule-fields city-select form-control" } %>
         </div>
         <div id="when">
-          <table>
-            <tr>
-              <td><h4>When</h4></td>
-            </tr>
-            <tr>
-              <td><%= f.date_field :date, class: "input-fields schedule-fields form-control" %></td>
-              <td><%= f.time_field :time, class: "input-fields schedule-fields form-control" %></td>
-            </tr>
-          </table>
+          <div class="title">
+            <h4>When</h4>
+          </div>
+          <div class="adjacent-fields">
+            <%= f.date_field :date, class: "input-fields schedule-fields form-control" %>
+            <%= f.time_field :time, class: "input-fields schedule-fields form-control" %>
+          </div>
         </div>
         <div id="what">
-          <table>
-            <tr>
-              <td><h4>What</h4></td>
-            </tr>
-            <tr>
-              <td><%= f.select :activity_id, Activity.all.map { |activity| [activity.name, activity.id] }, {}, { class: "input-fields schedule-fields form-control" } %></td>
-            </tr>
-            <tr>
-              <td><div class="scaffold"></div></td>
-            </tr>
-          </table>
-          <div class="create-schedule-btn">
+          <div class="title">
+            <h4>What</h4>  
+          </div>
+          <div class="adjacent-fields">
+            <%= f.select :activity_id, Activity.all.map { |activity| [activity.name, activity.id] }, {}, { class: "input-fields schedule-fields form-control" } %>
             <%= f.submit "Create", class: "btn btn-lg" %>
           </div>
         </div>
@@ -57,10 +40,12 @@
   </div>
   <div class="lower-index">
     <div class="available-matches">
-      <h3>Your Matches</h3>
+      <h4 class="header">Your Matches</h4>
       <div class="card">
         <% if @matches.length == 0 %>
-          <p class="none-msg">No matches yet. Create a schedule to find a match.</p>
+          <div class="none-msg">
+            <p>No matches yet. Create a schedule to find a match.</p>
+          </div>
         <% else %>
           <% @matches.each do |match| %>
             <%= link_to match_path(match) do %>
@@ -97,32 +82,36 @@
       </div>
     </div>
     <div class="upcomings">
-      <h3>Upcomings</h3>
+      <h4 class="header">Upcomings</h4>
       <div class="card">
         <% if @confirms.length == 0 %>
-          <p class="none-msg">Currently no upcomings.</p>
+          <div class="none-msg">
+            <p>Currently no upcomings.</p>
+          </div>
         <% else %>
           <% @confirms.each do |confirm| %>
-            <div class="confirm-row">
-              <div class="confirm-activity">
-                <p><%= confirm.activity.name %></p>
-              </div>
-              <div class="vr"></div>
-              <div class="confirm-info">
-                <table>
-                  <tr>
-                    <td class="attr-name">Where</td>
-                    <td class="attr-info"><%= confirm.location %></td>
-                  </tr>
-                  </table>
+            <%= link_to match_path(confirm.match) do %>
+              <div class="confirm-row">
+                <div class="confirm-activity">
+                  <p><%= confirm.activity.name %></p>
+                </div>
+                <div class="vr"></div>
+                <div class="confirm-info">
                   <table>
-                  <tr>
-                    <td class="attr-name">When</td>
-                    <td class="attr-info"><%= confirm.time.strftime("%A %d-%m-%Y") %></td>
-                  </tr>
-                </table>
+                    <tr>
+                      <td class="attr-name">Where</td>
+                      <td class="attr-info"><%= confirm.location %></td>
+                    </tr>
+                    </table>
+                    <table>
+                    <tr>
+                      <td class="attr-name">When</td>
+                      <td class="attr-info"><%= confirm.time.strftime("%a %d-%m-%y %H:%M") %></td>
+                    </tr>
+                  </table>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>

@@ -1,0 +1,63 @@
+.confirm-index {
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  h3 {
+    font-weight: 900;
+    margin-top: 0;
+    padding-top: 20px;
+  }
+  .confirm-list {
+    width: 45%;
+    overflow-y: auto;
+    .confirm-row {
+      min-height: 150px;
+      display: flex;
+      margin: 20px 0;
+      .activity-name {
+        width: 150px;
+        background-color: #00708A;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18pt;
+        color: #fff;
+      }
+      .confirm-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        table {
+          margin: 0 20px;
+          td {
+            padding: 10px;
+          }
+          .attr-name {
+            width: 70px;
+            color: #aaa;
+          }
+          
+        }
+      }
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 20px;
+        p {
+          font-size: 16pt;
+          margin: 5px 0;
+          color: #00708A;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        img {
+          border-radius: 50%;
+          height: 80px;
+        }
+      }
+    }
+  }
+}

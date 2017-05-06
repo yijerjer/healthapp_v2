@@ -44,6 +44,8 @@ gem 'omniauth-facebook'
 # Upload files and images such as profile pictures
 gem 'carrierwave'
 gem 'mini_magick'
+# User anycable for websockets
+gem 'anycable-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

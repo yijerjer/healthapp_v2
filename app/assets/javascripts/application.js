@@ -19,10 +19,10 @@
 // custom pure js animation functions
 function fadeIn(el) {
   el.style.opacity = 0;
-  el.style.display = '';
+  el.style.display = 'block';
 
   var tick = function() {
-    el.style.opacity = +el.style.opacity + 0.05;
+    el.style.opacity = +el.style.opacity + 0.08;
 
     if (+el.style.opacity < 1) {
       requestAnimationFrame(tick) || setTimeout(tick, 16);
@@ -42,21 +42,7 @@ function fadeOut(el) {
     }
   };
   tick();
-}
-
-function scrollSlide(el, scrollHeight) {
-  var elStyle = window.getComputedStyle(el);
-  var pxChange = (el.scrollHeight - el.scrollTop) / 50;
-  console.log(pxChange);
-
-  var tick = function(scrollTopInt) {
-    el.scrollTop += pxChange; 
-
-    if (el.scrollTop != scrollTopInt && el.scrollTop < el.scrollHeight) {
-      requestAnimationFrame(function() {
-        tick(el.scrollTop);
-      });
-    }
-  };
-  tick(el.scrollTop);
+  setTimeout(function() {
+    el.style.display = 'none';
+  }, 500);
 }
