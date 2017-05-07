@@ -1,23 +1,26 @@
 <div class="match-show">
   <div class="match-details">
+    <div class="mobile-pullup">
+      <%= icon("angle-up") %>
+    </div>
     <% other_user = @match.other_user(current_user) %>
     <% user_schedule = @match.get_user_schedule(current_user) %>
     <% other_user_schedule = @match.get_user_schedule(other_user) %>
     <div class="match-show-header">
-      <h3>Match with . . .</h3>
+      <h4 class="header">Match with . . .</h4>
     </div>
     
     <div class="user-info">
       <%= image_tag other_user.avatar? ? other_user.avatar_url(:medium) : "default-dp.png" %>
       <div class="details">
-        <h2><%= other_user.name %></h2>
-        <p><%= other_user.age %></p>
+        <h3><%= other_user.name %></h3>
+        <p class="age"><%= other_user.age %></p>
         <p>from <span><%= "#{other_user.city}, #{other_user.state}, #{other_user.country}" %></span></p>
       </div>
     </div>
 
     <div class="schedule-info">
-      <h3>Schedule</h3>
+      <h4 class="header">Schedule</h4>
       <table class="shared">
         <tr>
           <td class="attribute">What</td>
@@ -59,7 +62,7 @@
     </div>
 
     <div class="confirm">
-      <h3>Confirm</h3>
+      <h4 class="header">Confirm</h4>
       <div class="card">
         <% confirm = @match.confirm %>
         <% if confirm %>
@@ -124,9 +127,12 @@
         <% end %>
       </div>
     </div>
-
   </div>
+
   <div class="card" id="chat" data-matchid="<%= @match.id %>" data-selfid="<%= current_user.id %>" data-otherid="<%= @match.other_user(current_user).id %>">
+    <div class="mobile-pulldown">
+      <%= icon("angle-down") %>
+    </div>
     <ul>
       <% @messages.each do |message| %>
         <li class="<%= message.user == current_user ? "self" : "other" %>">
@@ -139,8 +145,22 @@
     <div class="type-area">
       <%= form_for :message, url: match_messages_path(@match), html: { id: "create-message-form" } do |f| %>
         <%= f.text_area :content, rows: 1, class: "form-control" %>
-        <%= f.submit "Send", class: "btn" %>
+        <%= f.submit "Send", class: "btn", data: { disable_with: false } %>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  var pulldown = document.querySelector('#chat .mobile-pulldown');
+  var pullup = document.querySelector('.match-details .mobile-pullup');
+  var matchDetails = document.getElementsByClassName('match-details')[0];
+
+  pulldown.addEventListener('click', function() {
+    matchDetails.style.top = '50px';
+  });
+  pullup.addEventListener('click', function() {
+    matchDetails.style.top=  '-150%';
+  });
+
+</script>

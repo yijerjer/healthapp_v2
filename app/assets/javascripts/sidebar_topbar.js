@@ -12,11 +12,11 @@ document.addEventListener('turbolinks:load', function() {
         fadeIn(darkenOverlay);
       });
       arrowLeft.addEventListener('click', function() {
-        sidebar.style.left = '-80%';
+        sidebar.style.left = '-100%';
         fadeOut(darkenOverlay);
       });
       darkenOverlay.addEventListener('click', function() {
-        sidebar.style.left = '-80%';
+        sidebar.style.left = '-100%';
         fadeOut(darkenOverlay);
       });
     }    

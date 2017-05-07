@@ -1,4 +1,3 @@
-
 .match-show {
   width: 95%;
   height: 100%;
@@ -9,38 +8,55 @@
 
 .match-details {
   width: 48%;
-  height: 94%;
-  margin: auto 0;
+  transition: 0.5s;
+  .mobile-pullup {
+    width: 100%;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+    border-bottom: solid 1px #ccc;
+    i {
+      font-size: 26px;
+    }
+  }
   .match-show-header {
-    h3 {
-      margin: 0;
+    h4 {
       color: #999;
-      span {
-        color: #00708A;
-        font-weight: 900;
-        font-size: 24pt;
-      }
     }
   }
   .user-info {
-    height: 150px;
     width: 100%;
-    margin: 20px 0 10px;
+    height: 140px;
+    margin-top: 10px;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     img {
-      height: 100%;
+      height: 85%;
       border-radius: 50%;
     }
     .details {
       margin: 0 30px;
+      width: 50%;
+      flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
-      h2 {
+      justify-content: center;
+      h3 {
         color: #00708A;
         font-weight: 900;
+        margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .age {
+        margin: 10px 0;
       }
       p {
+        margin: 0;
         color: #999;
         span {
           color: #000;
@@ -49,12 +65,9 @@
     }
   }
   .schedule-info {
-    h3 {
-      font-weight: 900;
-    }
     .shared {
       width: 100%;
-      margin: 20px 0;
+      margin: 10px 0;
       .attribute {
         width: 60px;
         color: #999;
@@ -63,14 +76,14 @@
         width: 200px;
       }
       .activity-name {
-        font-size: 22pt;
+        font-size: 22px;
         color: #00708A;
       }
     }
     .card {
       display: flex;
       justify-content: space-between;
-      padding: 20px;
+      padding: 10px 20px;
       .yours, .theirs {
         text-align: center;
         width: 49%;
@@ -92,11 +105,13 @@
       .vr {
         width: 1px;
         margin: 0 20px;
+        padding: 0;
         border-left: solid 1px #ccc;
       }
     }
   }
   .confirm {
+    margin-bottom: 20px;
     h3 {
       font-weight: 900;
     }
@@ -105,9 +120,9 @@
       table {
         width: 100%;
         td {
-          padding: 5px 20px 10px 20px;
+          padding: 0 10px 10px 10px;
           &.form-label {
-            padding: 5px 20px 0 20px;
+            padding-bottom: 0;
             color: #999;
           }
           &.datetime {
@@ -115,6 +130,7 @@
           }
           &.status {
             padding-top: 20px;
+            padding-bottom: 0;
             color: #999;
             font-size: 14pt;
           }
@@ -131,19 +147,43 @@
       }
     }
   }
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+  }
 }
 
 #chat {
   width: 48%;
-  height: 95%;
+  height: 96%;
   margin: auto 0;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  .mobile-pulldown {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex: none;
+    background-color: #f1f1f1;
+    border-bottom: solid 1px #ccc;
+    i {
+      font-size: 26px;
+    }
+  }
   ul {
-    max-height: 100%;
+    height: 70%;
+    flex-grow: 1;
     overflow-x: hidden;
     overflow-y: scroll;
     list-style: none;
-    padding: 10px;
+    padding: 0 10px;
+    margin: 0;
     li {
       width: 100%;
       display: flex;
@@ -178,9 +218,8 @@
     }
   }
   .type-area {
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    flex: none;
     background-color: #fff;
     form {
       width: 100%;
@@ -195,7 +234,7 @@
         padding: 5px;
         border-radius: 5px;
         box-shadow: none;
-        font-size: 12pt;
+        font-size: 14px;
         &:focus {
           border: solid 1px #00708A;
         }
@@ -203,6 +242,54 @@
       input {
         width: 18%;
         border-radius: 5px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .match-show {
+    width: 100%;
+    flex-direction: column;
+    .match-details {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      position: fixed;
+      top: -150%;
+      background-color: #fff;
+      padding-bottom: 60px;
+      z-index: 1;
+      div {
+        padding: 0 10px;
+      }
+      .mobile-pullup {
+        display: flex;
+      }
+      .match-show-header {
+        margin-top: 30px;
+      }
+      .schedule-info {
+        .card {
+          padding: 10px;
+          td {
+            padding: 5px !important;
+            &.attribute {
+              width: 50px;
+            }
+          }
+          .vr {
+            margin: 0;
+          }
+        }
+      }
+    }
+    #chat {
+      height: 100%;
+      width: 100%;
+      border: none;
+      .mobile-pulldown {
+        display: flex;
       }
     }
   }

@@ -8,35 +8,46 @@
     padding-top: 20px;
   }
   .confirm-list {
-    width: 45%;
-    overflow-y: auto;
+    width: 100%;
+    a {
+      color: #000;
+      &:hover {
+        text-decoration: none;
+        .confirm-row {
+          transform: scale(1.02);
+        }
+      }
+    }
     .confirm-row {
-      min-height: 150px;
+      height: 100px;
       display: flex;
+      align-items: center;
       margin: 20px 0;
+      transition: 0.5s;
       .activity-name {
-        width: 150px;
+        width: 20%;
+        height: 100%;
         background-color: #00708A;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 18pt;
+        font-size: 22px;
         color: #fff;
       }
       .confirm-info {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        table {
-          margin: 0 20px;
-          td {
-            padding: 10px;
-          }
-          .attr-name {
-            width: 70px;
-            color: #aaa;
-          }
-          
+        justify-content: space-around;
+        width: 70%;
+        margin: 10px;
+      }
+      table {
+        width: 45%;
+        td {
+          padding: 10px;
+        }
+        .attr-name {
+          width: 70px;
+          color: #aaa;
         }
       }
       .user-info {
@@ -56,6 +67,30 @@
         img {
           border-radius: 50%;
           height: 80px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .confirm-list {
+    width: 100% !important;
+    .confirm-row {
+      height: 150px !important;
+      .activity-name {
+        width: 25% !important;
+        font-size: 18px !important;
+      }
+      .confirm-info {
+        width: 70% !important;
+        flex-direction: column;
+        justify-content: center;
+        table {
+          width: 100% !important;
+          .attr-name {
+            width: 60px;
+          }
         }
       }
     }

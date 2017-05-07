@@ -48,7 +48,6 @@ document.addEventListener('turbolinks:load', function() {
       if (messageContent !== '') {
         App.chat.send({sent_by: chat.dataset.selfid, content: messageContent});
       }
-
       return false;
     });
     

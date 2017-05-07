@@ -2,25 +2,27 @@
   <h3>All Confirms</h3>
   <div class="confirm-list">
     <% @confirms.each do |confirm| %>
-      <div class="card confirm-row">
-        <div class="activity-name">
-          <%= confirm.activity.name %>
+      <%= link_to match_path(confirm.match) do %>
+        <div class="card confirm-row">
+          <div class="activity-name">
+            <%= confirm.activity.name %>
+          </div>
+          <div class="confirm-info">
+            <table class="where">
+              <tr>
+                <td class="attr-name">Where</td>
+                <td><%= confirm.location %></td>
+              </tr>
+            </table>
+            <table class="when">
+              <tr>
+                <td class="attr-name">When</td>
+                <td><%= confirm.time.strftime("%A %d-%m-%Y %I:%M %p") %></td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <div class="confirm-info">
-          <table class="where">
-            <tr>
-              <td class="attr-name">Where</td>
-              <td><%= confirm.location %></td>
-            </tr>
-          </table>
-          <table class="when">
-            <tr>
-              <td class="attr-name">When</td>
-              <td><%= confirm.time.strftime("%A %d-%m-%Y %I:%M %p") %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

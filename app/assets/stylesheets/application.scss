@@ -110,8 +110,9 @@ h4.header {
 @media screen and (max-width: 480px) {
   .dashboard-content {
     top: 50px;
+    height: calc(100% - 50px);
     left: 0;
     width: 100%;
-    padding: 0 15px;
+    padding: 0;
   }
 }

@@ -45,7 +45,7 @@ gem 'omniauth-facebook'
 gem 'carrierwave'
 gem 'mini_magick'
 # User anycable for websockets
-gem 'anycable-rails'
+# gem 'anycable-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
