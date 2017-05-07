@@ -40,7 +40,6 @@
   }
   .user-info {
     .user-dp {
-      background-color: #aaa;
       width: 65%;
       margin: 30px auto 0 auto;
       border-radius: 50%;
@@ -96,12 +95,40 @@
   // }
 }
 
+@media screen and (max-width: 1400px) {
+  #sidebar {
+    left: -100%;
+    width: 80%;
+    .fa-arrow-left {
+      display: block !important;
+    }
+    .landscape-align {
+      display: flex;
+      .user-info {
+        width: 35%;
+      }
+      .navigation {
+        width: 65%;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 480px) {
   #sidebar {
     left: -100%;
     width: 80%;
     .fa-arrow-left {
       display: block !important;
+    }
+    .landscape-align {
+      display: block;
+      .user-info {
+        width: 100%;
+      }
+      .navigation {
+        width: 100%;
+      }
     }
   }
 }

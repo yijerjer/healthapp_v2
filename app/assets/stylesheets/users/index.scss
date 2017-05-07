@@ -93,26 +93,35 @@
         height: 120px;
         display: flex;
         padding: 15px;
-        img {
-          height: 90%;
-          border-radius: 50%;
-        }
-        .other-user-info {
-          width: 25%;
+        .other-user {
+          width: 40%;
           display: flex;
-          flex-direction: column;
-          justify-content: center;
-          flex: none;
-          margin: 0 10px 0 15px;
-          h4 {
-            font-size: 20px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+          justify-content: flex-start;
+          align-items: center;
+          .other-user-img {
+            height: 90%;
+            img {
+              height: 100%;
+              border-radius: 50%;
+            }
           }
-          p {
-            font-size: 16px;
-            color: #999;
+          .other-user-info {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+            margin: 0 10px 0 15px;
+            h4 {
+              font-size: 20px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+            p {
+              font-size: 16px;
+              color: #999;
+            }
           }
         }
         .match-info {
@@ -192,7 +201,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1000px) {
   .index-page {
     .upper-index {
       .card {
@@ -217,12 +226,14 @@
         height: auto !important;
         align-items: center;
         flex-wrap: wrap;
-        img {
-          height: 100px;
-        }
-        .other-user-info {
-          height: 120px;
-          width: 55% !important;
+        .other-user {
+          width: 100% !important;
+          .other-user-img {
+            padding-right: 10px;
+          }
+          .other-user-info {
+            height: 120px;
+          }
         }
         .match-info {
           width: 60%;

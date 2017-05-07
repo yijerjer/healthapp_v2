@@ -53,10 +53,14 @@
                 <% other_user = match.other_user(current_user) %>
                 <% user_schedule = match.get_user_schedule(current_user) %>
 
-                <%= image_tag other_user.avatar? ? other_user.avatar_url(:thumb): "default-dp.png", height: "100px" %>
-                <div class="other-user-info">
-                  <h4><%= other_user.name %></h4>
-                  <p><%= other_user.age %></p>
+                <div class="other-user">
+                  <div class="other-user-img">
+                    <%= image_tag other_user.avatar? ? other_user.avatar_url(:thumb): "default-dp.png", height: "100px" %>
+                  </div>
+                  <div class="other-user-info">
+                    <h4><%= other_user.name %></h4>
+                    <p><%= other_user.age %></p>
+                  </div>
                 </div>
                 <div class="match-info">
                   <table>

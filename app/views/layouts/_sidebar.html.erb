@@ -8,37 +8,39 @@
     <% end %>
     <%= icon("arrow-left") %>
   </div>
-  <div class="user-info">
-    <div class="user-dp">
-      <%= image_tag current_user.avatar_url(:medium) if current_user.avatar? %>
+  <div class="landscape-align">
+    <div class="user-info">
+      <div class="user-dp">
+        <%= image_tag current_user.avatar_url(:medium) if current_user.avatar? %>
+      </div>
+      <div class="user-details">
+        <h3><%= current_user.name %></h3>
+        <%= link_to "Go to Profile", profile_user_path(current_user), class: "btn btn-edit-user" %>
+      </div>
     </div>
-    <div class="user-details">
-      <h3><%= current_user.name %></h3>
-      <%= link_to "Go to Profile", profile_user_path(current_user), class: "btn btn-edit-user" %>
-    </div>
-  </div>
 
-  <div class="navigation">
-    <ul>
-      <%= link_to schedules_path do %>
-        <li>
-          <span><%= icon("clock-o") %></span>
-          Schedules
-        </li>
-      <% end %>
-      <%= link_to matches_path do %>
-        <li>
-          <span><%= icon("handshake-o") %></span>
-          Matches
-        </li>
-      <% end %>
-      <%= link_to confirms_path do %>
-        <li>
-          <span><%= icon("calendar-check-o") %></span>
-          Confirms
-        </li>
-      <% end %>
-    </ul>
+    <div class="navigation">
+      <ul>
+        <%= link_to schedules_path do %>
+          <li>
+            <span><%= icon("clock-o") %></span>
+            Schedules
+          </li>
+        <% end %>
+        <%= link_to matches_path do %>
+          <li>
+            <span><%= icon("handshake-o") %></span>
+            Matches
+          </li>
+        <% end %>
+        <%= link_to confirms_path do %>
+          <li>
+            <span><%= icon("calendar-check-o") %></span>
+            Confirms
+          </li>
+        <% end %>
+      </ul>
+    </div>    
   </div>
 
   <!-- <div class="logout">
